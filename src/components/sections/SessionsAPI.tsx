@@ -7,19 +7,23 @@ export const SessionsAPI: React.FC = () => {
   const features = [
     {
       title: "Increase pipeline",
-      description: "B2B companies using TrackFlow get 74% more demos on average. Just like in a cold email, a personal touch goes a long way."
+      description: "B2B companies using TrackFlow get 74% more demos on average. Just like in a cold email, a personal touch goes a long way.",
+      icon: "/image 118_layerstyle.svg"
     },
     {
       title: "Speak to your visitors directly",
-      description: "Deliver a custom-generated blog post or sales pitch to your most engaged visitors."
+      description: "Deliver a custom-generated blog post or sales pitch to your most engaged visitors.",
+      icon: "/image 111_layerstyle.svg"
     },
     {
       title: "Understand what your visitors want",
-      description: "See what your visitors are engaging with and why. Spend time with your leads that are most likely to convert."
+      description: "See what your visitors are engaging with and why. Spend time with your leads that are most likely to convert.",
+      icon: "/image 112_layerstyle.svg"
     },
     {
       title: "Automatic landing page creation",
-      description: "Never build another landing page by hand again. TrackFlow generates all content and lets you review it before launching."
+      description: "Never build another landing page by hand again. TrackFlow generates all content and lets you review it before launching.",
+      icon: "/image 113_layerstyle.svg"
     }
   ];
 
@@ -72,6 +76,16 @@ export const SessionsAPI: React.FC = () => {
                 style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
                 variants={staggerItem}
               >
+                <motion.div 
+                  className="flex justify-start mb-4"
+                  variants={fadeIn}
+                >
+                  <img 
+                    src={feature.icon} 
+                    alt={`${feature.title} icon`}
+                    className="w-6 h-6 object-contain"
+                  />
+                </motion.div>
                 <h3 className="text-sm md:text-base font-medium text-gray-800 leading-tight mb-3">
                   {feature.title}
                 </h3>

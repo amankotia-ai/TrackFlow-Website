@@ -4,9 +4,10 @@ import { slideUp, staggerContainer, staggerItem, fadeIn } from '@/lib/animations
 
 interface UseCaseCardProps {
   title: string;
+  icon?: string;
 }
 
-const UseCaseCard: React.FC<UseCaseCardProps> = ({ title }) => (
+const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon }) => (
   <motion.div 
     className="border-r border-b p-6 md:p-8 flex flex-col justify-between min-h-[140px] md:min-h-[160px] last:border-r-0 md:even:border-r md:odd:border-r lg:nth-child-4n:border-r-0 hover:bg-hover-bg transition-colors" 
     style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
@@ -16,15 +17,23 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title }) => (
       className="flex justify-start mb-4"
       variants={fadeIn}
     >
-      {/* Small pixel-art style icon */}
-      <div className="grid grid-cols-3 gap-0.5">
-        {[...Array(9)].map((_, index) => (
-          <div
-            key={index}
-            className={`w-1.5 h-1.5 ${[0, 1, 3, 4, 5, 7, 8].includes(index) ? 'bg-[#F73029]' : 'bg-transparent'}`}
-          />
-        ))}
-      </div>
+      {icon ? (
+        <img 
+          src={icon} 
+          alt="" 
+          className="w-6 h-6 object-contain"
+        />
+      ) : (
+        /* Small pixel-art style icon */
+        <div className="grid grid-cols-3 gap-0.5">
+          {[...Array(9)].map((_, index) => (
+            <div
+              key={index}
+              className={`w-1.5 h-1.5 ${[0, 1, 3, 4, 5, 7, 8].includes(index) ? 'bg-[#F73029]' : 'bg-transparent'}`}
+            />
+          ))}
+        </div>
+      )}
     </motion.div>
     <motion.h3 
       className="text-sm md:text-base font-medium text-gray-800"
@@ -73,10 +82,10 @@ export const UseCases: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const useCases = [
-    { title: "Track visitor journeys" },
-    { title: "Tailor existing copy" },
-    { title: "Deliver AI-written pitch" },
-    { title: "Fine-tune personalization" }
+    { title: "Track visitor journeys", icon: "/image 114_layerstyle.svg" },
+    { title: "Tailor existing copy", icon: "/image 115_layerstyle.svg" },
+    { title: "Per-visit-personalization", icon: "/image 116_layerstyle.svg" },
+    { title: "Fine-tune personalization", icon: "/image 117_layerstyle.svg" }
   ];
 
   return (
@@ -116,6 +125,7 @@ export const UseCases: React.FC = () => {
           <UseCaseCard 
             key={index} 
             title={useCase.title}
+            icon={useCase.icon}
           />
         ))}
       </motion.div>
