@@ -11,7 +11,7 @@ export const ReadyToBuild: React.FC = () => {
 
   return (
     <motion.div 
-      className="max-w-[72rem] mx-auto px-4 md:px-8 py-12 md:py-16 border-t border-l border-r" 
+      className="max-w-[72rem] mx-auto px-4 md:px-8 py-12 md:py-16 border-t border-l border-r overflow-hidden" 
       style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
       ref={ref}
       initial="hidden"
@@ -19,7 +19,7 @@ export const ReadyToBuild: React.FC = () => {
       variants={staggerContainer}
     >
       <motion.div 
-        className="relative"
+        className="relative overflow-hidden"
         variants={scaleIn}
       >
         <motion.div 
@@ -32,60 +32,60 @@ export const ReadyToBuild: React.FC = () => {
         </motion.div>
         
         <motion.div 
-          className="relative p-6 md:p-8 lg:p-12 text-center md:text-left"
+          className="relative p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12"
           variants={staggerContainer}
         >
+          {/* Left Content */}
+          <div className="flex-1 text-center lg:text-left flex flex-col justify-center">
+            <motion.div 
+              className="w-12 h-12 mb-6 md:mb-8 mx-auto lg:mx-0" 
+              variants={scaleIn}
+            >
+              <img 
+                src="/image 95_layerstyle.svg" 
+                alt="TrackFlow Logo" 
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+            
+            <motion.h2 
+              className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-6 md:mb-8"
+              variants={slideUp}
+            >
+              Ready to<br />
+              Build with TrackFlow?
+            </motion.h2>
+            
+            <motion.div 
+              className="flex justify-center lg:justify-start"
+              variants={staggerContainer}
+            >
+              <motion.div 
+                variants={staggerItem}
+                whileHover={buttonHover}
+              >
+                <Button 
+                  onClick={openForm}
+                  className="text-white font-medium px-8 rounded-none w-full sm:w-auto" 
+                  style={{ backgroundColor: '#F73029' }}
+                >
+                  Start For Free
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+          
+          {/* Right Banner Image */}
           <motion.div 
-            className="w-12 h-12 mb-6 md:mb-8 mx-auto md:mx-0" 
-            variants={scaleIn}
-            whileHover={{ 
-              scale: 1.1,
-              rotate: 360,
-              transition: { duration: 0.3 }
-            }}
+            className="flex-shrink-0 w-full lg:w-80 xl:w-96 lg:-mr-24 xl:-mr-32 lg:-mb-40 xl:-mb-48"
+            style={{ marginRight: '-100px', marginBottom: '-180px' }}
+            variants={staggerItem}
           >
             <img 
-              src="/image 95_layerstyle.svg" 
-              alt="TrackFlow Logo" 
-              className="w-full h-full object-contain"
+              src="/image 109_layerstyle.svg" 
+              alt="TrackFlow Banner" 
+              className="w-full h-auto object-contain"
             />
-          </motion.div>
-          
-          <motion.h2 
-            className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-6 md:mb-8"
-            variants={slideUp}
-          >
-            Ready to<br />
-            Build with TrackFlow?
-          </motion.h2>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
-            variants={staggerContainer}
-          >
-            <motion.div 
-              variants={staggerItem}
-              whileHover={buttonHover}
-            >
-              <Button 
-                onClick={openForm}
-                className="text-white font-medium px-8 rounded-none w-full sm:w-auto" 
-                style={{ backgroundColor: '#F73029' }}
-              >
-                Start For Free
-              </Button>
-            </motion.div>
-            <motion.div 
-              variants={staggerItem}
-              whileHover={buttonHover}
-            >
-              <Button 
-                variant="outline" 
-                className="border-gray-400 text-gray-800 hover:bg-hover-bg rounded-none w-full sm:w-auto"
-              >
-                Documentation
-              </Button>
-            </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>

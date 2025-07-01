@@ -18,9 +18,9 @@ export const Footer: React.FC = () => {
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         variants={staggerContainer}
       >
-        <div className="flex flex-col md:flex-row justify-between items-stretch space-y-8 md:space-y-0">
+        <div className="flex flex-col space-y-8">
           <motion.div 
-            className="text-center md:text-left flex-1"
+            className="text-center md:text-left"
             variants={slideLeft}
           >
             <motion.img 
@@ -28,7 +28,6 @@ export const Footer: React.FC = () => {
               alt="Steel Logo" 
               className="h-8 mb-4 mx-auto md:mx-0"
               variants={scaleIn}
-              whileHover={{ scale: 1.05 }}
             />
             <motion.p 
               className="text-sm mb-4 text-gray-600"
@@ -79,23 +78,6 @@ export const Footer: React.FC = () => {
               />
               <span className="text-xs text-gray-500">All Systems Operational</span>
             </motion.div>
-          </motion.div>
-          
-          <motion.div 
-            className="flex justify-center md:justify-end items-center md:items-stretch md:ml-8"
-            variants={slideRight}
-          >
-            <motion.img 
-              src="/image 95_layerstyle.svg" 
-              alt="Logo" 
-              className="w-auto object-contain"
-              style={{ height: '160px' }}
-              whileHover={{ 
-                scale: 1.05,
-                rotate: 5,
-                transition: { duration: 0.3 }
-              }}
-            />
           </motion.div>
         </div>
       </motion.div>
