@@ -66,7 +66,7 @@ export const SessionsAPI: React.FC = () => {
             return (
               <motion.div 
                 key={index}
-                className={`hover:bg-hover-bg transition-colors p-6 ${
+                className={`p-6 ${
                   isFirstColumn ? 'border-l' : ''
                 } ${
                   isLastColumn ? '' : 'border-r'

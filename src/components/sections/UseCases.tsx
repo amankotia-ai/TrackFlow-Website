@@ -9,7 +9,7 @@ interface UseCaseCardProps {
 
 const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon }) => (
   <motion.div 
-    className="border-r border-b p-6 md:p-8 flex flex-col justify-between min-h-[140px] md:min-h-[160px] last:border-r-0 md:even:border-r md:odd:border-r lg:nth-child-4n:border-r-0 hover:bg-hover-bg transition-colors" 
+    className="border-r border-b p-6 md:p-8 flex flex-col justify-between min-h-[140px] md:min-h-[160px] last:border-r-0 md:even:border-r md:odd:border-r lg:nth-child-4n:border-r-0" 
     style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
     variants={staggerItem}
   >
