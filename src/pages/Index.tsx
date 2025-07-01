@@ -10,7 +10,6 @@ import {
   ReadyToBuild,
   Footer
 } from '@/components/sections';
-import ScrollToTop from '@/components/ui/scroll-to-top';
 import Grain from '@/components/ui/grain';
 
 const Index = () => {
@@ -27,7 +26,6 @@ const Index = () => {
       <ResearchGrants />
       <ReadyToBuild />
       <Footer />
-      <ScrollToTop />
       <Grain opacity={0.085} blendMode="screen" filter="brightness(1.2)" />
     </div>
   );

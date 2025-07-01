@@ -36,8 +36,7 @@ export const ReadyToBuild: React.FC = () => {
           variants={staggerContainer}
         >
           <motion.div 
-            className="w-8 h-8 rounded-sm flex items-center justify-center mb-6 md:mb-8 mx-auto md:mx-0" 
-            style={{ backgroundColor: '#F73029' }}
+            className="w-12 h-12 mb-6 md:mb-8 mx-auto md:mx-0" 
             variants={scaleIn}
             whileHover={{ 
               scale: 1.1,
@@ -45,7 +44,11 @@ export const ReadyToBuild: React.FC = () => {
               transition: { duration: 0.3 }
             }}
           >
-            <span className="text-white font-bold text-sm">S</span>
+            <img 
+              src="/image 95_layerstyle.svg" 
+              alt="TrackFlow Logo" 
+              className="w-full h-full object-contain"
+            />
           </motion.div>
           
           <motion.h2 
@@ -53,7 +56,7 @@ export const ReadyToBuild: React.FC = () => {
             variants={slideUp}
           >
             Ready to<br />
-            Build with Steel?
+            Build with TrackFlow?
           </motion.h2>
           
           <motion.div 
