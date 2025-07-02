@@ -698,7 +698,7 @@ export const DemoInteractive: React.FC = () => {
           </div>
 
           {/* Hero Section */}
-          <div className="px-8 py-24 relative">
+          <div className="px-8 pt-12 pb-24 relative">
             <div className="max-w-6xl mx-auto">
               <div className="text-center max-w-4xl mx-auto space-y-6">
                 {/* Headline - Fixed position with text transitions */}
