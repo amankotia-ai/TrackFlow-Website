@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Info } from 'lucide-react';
 import { slideUp, staggerContainer, staggerItem, fadeIn } from '@/lib/animations';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface ExampleCardProps {
   title: string;
@@ -35,6 +43,100 @@ const ExampleCard: React.FC<ExampleCardProps> = ({
       className="flex items-center gap-3 mb-6"
       variants={fadeIn}
     >
+      <Dialog>
+        <DialogTrigger asChild>
+          <button 
+            className="p-2 rounded-lg hover:bg-gray-100 transition-colors group border border-gray-200 hover:border-gray-300 flex items-center justify-center flex-shrink-0"
+            title="View configuration details"
+          >
+            <Info className="w-5 h-5 text-gray-500 group-hover:text-gray-700" />
+          </button>
+        </DialogTrigger>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-medium text-gray-800 mb-4">
+              {title} - Configuration Details
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-6">
+            {/* Scenario */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                Scenario
+              </h4>
+              <p className="text-gray-700 leading-relaxed bg-gray-50 p-4 rounded-lg">
+                {scenario}
+              </p>
+            </div>
+
+            {/* Rule Configuration */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                Rule Configuration
+              </h4>
+              <div className="space-y-4 bg-gray-50 p-4 rounded-lg">
+                <div>
+                  <div className="text-xs font-medium text-gray-600 mb-2">Condition</div>
+                  <code className="block p-3 bg-white border rounded-md text-sm font-mono text-gray-800 leading-relaxed shadow-sm">
+                    {ruleCondition}
+                  </code>
+                </div>
+                <div>
+                  <div className="text-xs font-medium text-gray-600 mb-2">Target Element</div>
+                  <code className="inline-block px-3 py-2 bg-white border rounded-md text-sm font-mono text-gray-800 shadow-sm">
+                    {targetElement}
+                  </code>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                Actions Performed
+              </h4>
+              <div className="space-y-3 bg-gray-50 p-4 rounded-lg">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-red-500 mt-2 flex-shrink-0"></div>
+                  <div className="text-gray-700 leading-relaxed">
+                    <span className="font-medium">Primary Action:</span> {action}
+                  </div>
+                </div>
+                
+                {additionalRule && (
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-red-400 mt-2 flex-shrink-0"></div>
+                    <div className="text-gray-700 leading-relaxed">
+                      <span className="font-medium">Additional Rule:</span> {additionalRule}
+                    </div>
+                  </div>
+                )}
+                
+                {additionalAction && (
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-red-300 mt-2 flex-shrink-0"></div>
+                    <div className="text-gray-700 leading-relaxed">
+                      <span className="font-medium">Additional Action:</span> {additionalAction}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Expected Result */}
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider mb-2" style={{ color: '#F73029' }}>
+                Expected Result
+              </h4>
+              <div className="text-gray-800 leading-relaxed font-medium p-4 rounded-lg" style={{ backgroundColor: 'rgba(247, 48, 41, 0.05)', border: '1px solid rgba(247, 48, 41, 0.1)' }}>
+                {result}
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+      
       {icon || (
         <div className="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0">
           <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -42,8 +144,9 @@ const ExampleCard: React.FC<ExampleCardProps> = ({
           </svg>
         </div>
       )}
+      
       <motion.h3 
-        className="text-xl md:text-2xl font-medium text-gray-800 leading-tight"
+        className="text-xl md:text-2xl font-medium text-gray-800 leading-tight flex-1"
         variants={slideUp}
       >
         {title}

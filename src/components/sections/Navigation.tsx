@@ -11,7 +11,6 @@ export const Navigation: React.FC = () => {
   const { openForm } = useCloudForm();
 
   const navItems = [
-    { name: 'Examples', href: '/examples' },
     { name: 'Use Cases', href: '/use-cases' },
     { name: 'Demo', href: '/demo' },
     { name: 'Blog', href: '/blog' }

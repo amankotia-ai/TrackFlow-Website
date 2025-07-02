@@ -4,7 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { slideUp, fadeIn, staggerContainer, staggerItem, buttonHover } from '@/lib/animations';
-import { Calendar, Clock, Users, TrendingUp, MousePointer, Eye, Zap, Target, Search, Award, Mail, Shield, Building, RotateCcw } from 'lucide-react';
+import { Calendar, Clock, Users, TrendingUp, MousePointer, Eye, Zap, Target, Search, Award, Mail, Shield, Building, RotateCcw, Info, CheckCircle, ArrowRight, Star, Lock, Globe, CreditCard } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface ScenarioCardProps {
   title: string;
@@ -12,42 +19,210 @@ interface ScenarioCardProps {
   icon: React.ReactNode;
   isActive: boolean;
   onClick: () => void;
+  scenario: any;
 }
 
-const ScenarioCard: React.FC<ScenarioCardProps> = ({ title, description, icon, isActive, onClick }) => (
+const ScenarioCard: React.FC<ScenarioCardProps> = ({ title, description, icon, isActive, onClick, scenario }) => (
   <motion.div 
-    className={`border-r border-b p-6 flex flex-col justify-between min-h-[140px] cursor-pointer transition-colors ${
+    className={`border-r border-b p-6 flex flex-col justify-between min-h-[140px] relative transition-colors group ${
       isActive ? 'bg-red-50' : 'hover:bg-gray-50'
     } last:border-r-0 lg:nth-child-4n:border-r-0`}
     style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
     variants={staggerItem}
-    onClick={onClick}
-    whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
   >
-    <motion.div 
-      className="flex justify-start mb-4"
-      variants={fadeIn}
-    >
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-        isActive ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-600'
-      }`}>
-        {icon}
+    {/* Info Icon */}
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          className="absolute top-3 right-3 p-2 transition-all opacity-0 group-hover:opacity-100 z-10"
+          onClick={(e) => e.stopPropagation()}
+          title="View configuration details"
+        >
+          <Info className="w-4 h-4 text-gray-500 hover:text-red-600 transition-colors" />
+        </button>
+      </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto border" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+         <DialogHeader className="border-b pb-6" style={{ borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+           <div className="flex items-center gap-4">
+             <div className="w-14 h-14 rounded-full flex items-center justify-center bg-red-500 text-white">
+               {scenario.icon}
+             </div>
+             <div>
+               <DialogTitle className="text-2xl font-semibold text-gray-900">
+                 {title} Configuration
+               </DialogTitle>
+               <p className="text-sm text-gray-600 mt-1 font-medium">Personalization rules and content transformations</p>
+             </div>
+           </div>
+         </DialogHeader>
+         
+         <div>
+           {/* Content Rules */}
+           <div className="border-l border-r border-t px-6 pt-6 pb-6" style={{ borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+             <div className="flex items-center gap-3 mb-6">
+               <div className="w-8 h-8 flex items-center justify-center" style={{ color: '#F73029' }}>
+                 <Target className="w-5 h-5" />
+               </div>
+               <h4 className="text-xl font-semibold text-gray-900">Content Rules</h4>
+             </div>
+             
+             <div className="flex items-center gap-3 mb-4">
+               <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+               <span className="text-sm font-semibold text-gray-700">UTM Source Detection</span>
+             </div>
+             <code className="block p-4 border text-sm font-mono text-gray-900 leading-relaxed mb-6" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+               IF utm_source = &quot;{scenario.source}&quot;
+             </code>
+             
+             <div className="grid md:grid-cols-2 gap-6">
+               <div>
+                 <div className="flex items-center gap-3 mb-4">
+                   <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                   <span className="text-sm font-semibold text-gray-700">Campaign Context</span>
+                 </div>
+                 <code className="block p-4 border text-sm font-mono text-gray-900 leading-relaxed" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+                   utm_campaign = &quot;{scenario.campaign}&quot;
+                 </code>
+               </div>
+               <div>
+                 <div className="flex items-center gap-3 mb-4">
+                   <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                   <span className="text-sm font-semibold text-gray-700">Target Audience</span>
+                 </div>
+                 <code className="block p-4 border text-sm font-mono text-gray-900 leading-relaxed" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+                   ICP = &quot;{scenario.icp}&quot;
+                 </code>
+               </div>
+             </div>
+           </div>
+
+           {/* Content Replacement */}
+           <div className={`px-6 pt-6 pb-6 ${(title === 'G2 Review' || title === 'Email Newsletter') ? 'border-l border-r border-t' : 'border'}`} style={{ borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+             <div className="flex items-center gap-3 mb-6">
+               <div className="w-8 h-8 flex items-center justify-center" style={{ color: '#F73029' }}>
+                 <ArrowRight className="w-5 h-5" />
+               </div>
+               <h4 className="text-xl font-semibold text-gray-900">Content Replacement</h4>
+             </div>
+             
+             <div className="flex items-center gap-3 mb-4">
+               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#F73029' }}></div>
+               <span className="text-sm font-semibold text-gray-700">Main Headline Replacement</span>
+             </div>
+             <div className="space-y-3 mb-6">
+               <div className="p-4 border rounded-lg" style={{ borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
+                 <div className="flex items-center gap-2 mb-3">
+                   <div className="w-5 h-5 rounded-full border-2 border-gray-300 bg-white flex items-center justify-center">
+                     <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                   </div>
+                   <div className="text-xs font-semibold tracking-wide text-gray-500">BEFORE</div>
+                 </div>
+                 <div className="text-sm text-gray-700 font-medium pl-7">&quot;Automate Your Workflows with FlowSync&quot;</div>
+               </div>
+               <div className="p-4 border rounded-lg" style={{ borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: 'rgba(0, 0, 0, 0.02)' }}>
+                 <div className="flex items-center gap-2 mb-3">
+                   <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center" style={{ borderColor: '#F73029', backgroundColor: '#F73029' }}>
+                     <div className="w-2 h-2 rounded-full bg-white"></div>
+                   </div>
+                   <div className="text-xs font-semibold tracking-wide" style={{ color: '#F73029' }}>AFTER</div>
+                 </div>
+                 <div className="text-sm text-gray-900 font-medium pl-7">&quot;{scenario.content.headline}&quot;</div>
+               </div>
+             </div>
+             
+             <div className="grid md:grid-cols-2 gap-6">
+               <div>
+                 <div className="flex items-center gap-3 mb-4">
+                   <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                   <span className="text-sm font-semibold text-gray-700">Subheadline</span>
+                 </div>
+                 <div className="text-sm text-gray-900 p-4 border font-medium" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+                   <span className="text-gray-600 font-semibold">New:</span> &quot;{scenario.content.subheadline}&quot;
+                 </div>
+               </div>
+               <div>
+                 <div className="flex items-center gap-3 mb-4">
+                   <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                   <span className="text-sm font-semibold text-gray-700">Primary CTA</span>
+                 </div>
+                 <div className="text-sm text-gray-900 p-4 border font-medium" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+                   <span className="text-gray-600 font-semibold">New:</span> &quot;{scenario.content.ctaPrimary}&quot;
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           {/* Per Visit Personalization */}
+           {(title === 'G2 Review' || title === 'Email Newsletter') && (
+             <div className="border px-6 pt-6 pb-6" style={{ borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+               <div className="flex items-center gap-3 mb-6">
+                 <div className="w-8 h-8 flex items-center justify-center text-gray-600">
+                   <Eye className="w-5 h-5" />
+                 </div>
+                 <h4 className="text-xl font-semibold text-gray-900">Per Visit Personalization</h4>
+               </div>
+               
+               {title === 'G2 Review' && (
+                 <>
+                   <div className="flex items-center gap-3 mb-4">
+                     <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                     <span className="text-sm font-semibold text-gray-700">Enterprise Trust Section</span>
+                   </div>
+                   <code className="block p-4 border text-sm font-mono text-gray-900 leading-relaxed mb-2" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+                     IF utm_source = &quot;g2&quot; AND visit_count &gt;= 2
+                   </code>
+                   <div className="text-sm text-gray-700 p-3 border" style={{ borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: '#FFFAF3' }}>
+                     <span className="font-semibold">Action:</span> Show element <code className="px-2 py-1 text-xs font-mono ml-1" style={{ backgroundColor: '#F73029', color: 'white' }}>#enterprise-trust-section</code>
+                   </div>
+                 </>
+               )}
+               {title === 'Email Newsletter' && (
+                 <>
+                   <div className="flex items-center gap-3 mb-4">
+                     <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                     <span className="text-sm font-semibold text-gray-700">Subscriber Pricing Section</span>
+                   </div>
+                   <code className="block p-4 border text-sm font-mono text-gray-900 leading-relaxed mb-2" style={{ backgroundColor: '#FFFAF3', borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+                     IF utm_source = &quot;email&quot; AND visit_count &gt;= 3
+                   </code>
+                   <div className="text-sm text-gray-700 p-3 border" style={{ borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: '#FFFAF3' }}>
+                     <span className="font-semibold">Action:</span> Show element <code className="px-2 py-1 text-xs font-mono ml-1" style={{ backgroundColor: '#F73029', color: 'white' }}>#subscriber-pricing</code>
+                   </div>
+                 </>
+                                )}
+             </div>
+           )}
+         </div>
+       </DialogContent>
+    </Dialog>
+
+    {/* Card Content - Clickable */}
+    <div className="flex flex-col h-full cursor-pointer" onClick={onClick}>
+      <motion.div 
+        className="flex justify-start mb-4"
+        variants={fadeIn}
+      >
+        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+          isActive ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-600'
+        }`}>
+          {icon}
+        </div>
+      </motion.div>
+      <div>
+        <motion.h3 
+          className="text-sm font-medium text-gray-800 mb-2"
+          variants={slideUp}
+        >
+          {title}
+        </motion.h3>
+        <motion.p 
+          className="text-xs text-gray-600"
+          variants={slideUp}
+        >
+          {description}
+        </motion.p>
       </div>
-    </motion.div>
-    <div>
-      <motion.h3 
-        className="text-sm font-medium text-gray-800 mb-2"
-        variants={slideUp}
-      >
-        {title}
-      </motion.h3>
-      <motion.p 
-        className="text-xs text-gray-600"
-        variants={slideUp}
-      >
-        {description}
-      </motion.p>
     </div>
   </motion.div>
 );
@@ -76,6 +251,7 @@ export const DemoInteractive: React.FC = () => {
   
   const [activeScenario, setActiveScenario] = useState('default');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDemoLifted, setIsDemoLifted] = useState(false);
 
   const scenarios = {
     'default': {
@@ -319,6 +495,7 @@ export const DemoInteractive: React.FC = () => {
     if (scenarioKey === activeScenario) return;
     
     setIsTransitioning(true);
+    setIsDemoLifted(true);
     
     setTimeout(() => {
       setActiveScenario(scenarioKey);
@@ -330,7 +507,9 @@ export const DemoInteractive: React.FC = () => {
   };
 
   const handleReset = () => {
-    handleScenarioChange('default');
+    setIsDemoLifted(false);
+    setActiveScenario('default');
+    setIsTransitioning(false);
   };
 
   const currentScenario = scenarios[activeScenario];
@@ -380,16 +559,50 @@ export const DemoInteractive: React.FC = () => {
               icon={scenario.icon}
               isActive={activeScenario === key}
               onClick={() => handleScenarioChange(key)}
+              scenario={scenario}
             />
           ))}
       </motion.div>
 
       {/* Demo Interface */}
       <motion.div 
-        className="border-t -mx-4 md:-mx-8" 
-        style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+        className="border-t -mx-4 md:-mx-8 relative overflow-hidden" 
         variants={staggerItem}
+        animate={{
+          y: isDemoLifted ? -12 : 0,
+          scale: isDemoLifted ? 1.01 : 1,
+          rotateX: isDemoLifted ? 1 : 0,
+        }}
+        transition={{ 
+          duration: 0.4, 
+          ease: [0.22, 1, 0.36, 1],
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }}
+        style={{
+          borderColor: 'rgba(247, 48, 41, 0.1)',
+          transformStyle: 'preserve-3d',
+          transformOrigin: 'center center',
+          boxShadow: isDemoLifted 
+            ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 15px 25px -8px rgba(247, 48, 41, 0.1), 0 0 0 1px rgba(247, 48, 41, 0.05)' 
+            : '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+          borderRadius: isDemoLifted ? '12px' : '0px',
+        }}
       >
+        {/* Subtle glow effect when lifted */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          animate={{
+            opacity: isDemoLifted ? 1 : 0,
+          }}
+          transition={{ duration: 0.4 }}
+          style={{
+            background: 'radial-gradient(circle at center, rgba(247, 48, 41, 0.03) 0%, transparent 70%)',
+            borderRadius: '12px',
+          }}
+        />
+
         {/* Analytics Bar */}
         <div className="bg-gray-50 px-6 py-4 border-b flex flex-wrap items-center justify-between gap-4" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
           <div className="flex items-center gap-6">
@@ -564,6 +777,61 @@ export const DemoInteractive: React.FC = () => {
             </div>
           </div>
 
+          {/* Email Newsletter - Subscriber Pricing Section */}
+          <motion.div
+            id="subscriber-pricing"
+            className="px-8 py-12 border-t bg-gradient-to-br from-blue-50 to-indigo-50"
+            style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ 
+              opacity: activeScenario === 'email' && !isTransitioning ? 1 : 0,
+              height: activeScenario === 'email' && !isTransitioning ? 'auto' : 0
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
+                  <Star className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Exclusive Subscriber Benefits</h3>
+              </div>
+              <p className="text-gray-600 mb-8">Special pricing and features just for our newsletter subscribers</p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-white rounded-xl p-6 border border-blue-200 shadow-sm">
+                  <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Pro Plan</h4>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">$29<span className="text-lg text-gray-600">/mo</span></div>
+                  <div className="text-sm text-green-600 font-medium mb-4">30% subscriber discount</div>
+                  <Button className="w-full" style={{ backgroundColor: '#F73029' }}>Upgrade Now</Button>
+                </div>
+                <div className="bg-white rounded-xl p-6 border-2 border-blue-300 shadow-md relative">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <Badge className="bg-blue-500">Most Popular</Badge>
+                  </div>
+                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-4">
+                    <Star className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Team Plan</h4>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">$89<span className="text-lg text-gray-600">/mo</span></div>
+                  <div className="text-sm text-green-600 font-medium mb-4">40% subscriber discount</div>
+                  <Button className="w-full" style={{ backgroundColor: '#F73029' }}>Upgrade Now</Button>
+                </div>
+                <div className="bg-white rounded-xl p-6 border border-blue-200 shadow-sm">
+                  <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                    <Building className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Enterprise</h4>
+                  <div className="text-3xl font-bold text-gray-900 mb-1">$299<span className="text-lg text-gray-600">/mo</span></div>
+                  <div className="text-sm text-green-600 font-medium mb-4">50% subscriber discount</div>
+                  <Button variant="outline" className="w-full">Contact Sales</Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Value Props Section */}
           <div className="px-8 py-16 bg-gray-50 border-t" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
             <div className="max-w-6xl mx-auto">
@@ -704,14 +972,103 @@ export const DemoInteractive: React.FC = () => {
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
           </div>
 
+          {/* G2 Review - Enterprise Trust Section */}
+          <motion.div
+            id="enterprise-trust-section"
+            className="px-8 py-12 border-t bg-gradient-to-br from-gray-50 to-slate-50"
+            style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ 
+              opacity: activeScenario === 'g2' && !isTransitioning ? 1 : 0,
+              height: activeScenario === 'g2' && !isTransitioning ? 'auto' : 0
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Enterprise-Grade Security & Compliance</h3>
+                </div>
+                <p className="text-gray-600 max-w-3xl mx-auto">Trusted by Fortune 500 companies with the highest security standards and compliance requirements</p>
+              </div>
+              
+              <div className="grid md:grid-cols-4 gap-8 mb-12">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-xl bg-green-100 flex items-center justify-center mx-auto mb-4">
+                    <Lock className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">SOC 2 Type II</h4>
+                  <p className="text-sm text-gray-600">Independently audited security controls</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-blue-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">GDPR Compliant</h4>
+                  <p className="text-sm text-gray-600">Full European data protection compliance</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-xl bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                    <Globe className="w-8 h-8 text-purple-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">99.9% Uptime</h4>
+                  <p className="text-sm text-gray-600">Enterprise SLA with guaranteed availability</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-xl bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-orange-600" />
+                  </div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">SSO Integration</h4>
+                  <p className="text-sm text-gray-600">SAML, OAuth, and directory integration</p>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Trusted by Industry Leaders</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">Bank-grade encryption (AES-256)</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">Role-based access controls</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">Comprehensive audit trails</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">24/7 security monitoring</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-gray-50 rounded-lg p-6 mb-4">
+                      <div className="text-3xl font-bold text-gray-900 mb-2">10,000+</div>
+                      <div className="text-gray-600">Enterprise customers</div>
+                    </div>
+                    <Button className="w-full" style={{ backgroundColor: '#F73029' }}>
+                      Schedule Security Review
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Content continuation blur */}
           <div className="h-48 bg-gradient-to-b from-gray-50 to-white relative">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/80 to-white"></div>
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-white"></div>
           </div>
         </div>
-
-
       </motion.div>
     </motion.div>
   );
