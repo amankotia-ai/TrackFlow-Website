@@ -545,7 +545,7 @@ export const DemoInteractive: React.FC = () => {
 
       {/* Scenario Selector Grid */}
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t mb-8 -mx-4 md:-mx-8" 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t mb-16 -mx-4 md:-mx-8" 
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         variants={staggerContainer}
       >
@@ -569,8 +569,8 @@ export const DemoInteractive: React.FC = () => {
         className="border-t -mx-4 md:-mx-8 relative overflow-hidden" 
         variants={staggerItem}
         animate={{
-          y: isDemoLifted ? -12 : 0,
-          scale: isDemoLifted ? 1.01 : 1,
+          y: isDemoLifted ? -20 : 0,
+          scale: isDemoLifted ? 1.02 : 1,
           rotateX: isDemoLifted ? 1 : 0,
         }}
         transition={{ 
@@ -586,7 +586,7 @@ export const DemoInteractive: React.FC = () => {
           transformOrigin: 'center center',
           boxShadow: isDemoLifted 
             ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 15px 25px -8px rgba(247, 48, 41, 0.1), 0 0 0 1px rgba(247, 48, 41, 0.05)' 
-            : '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+            : 'none',
           borderRadius: isDemoLifted ? '12px' : '0px',
         }}
       >
@@ -676,20 +676,33 @@ export const DemoInteractive: React.FC = () => {
                 </nav>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600 cursor-pointer hover:text-red-500 transition-colors">Sign In</span>
-                <Button size="sm" className="rounded-lg" style={{ backgroundColor: '#F73029' }}>
+                <span className="text-sm text-gray-600 cursor-pointer hover:text-blue-600 transition-colors">Sign In</span>
+                <Button 
+                  className="text-white hover:opacity-90 font-medium px-6 py-2 rounded-lg text-sm" 
+                  style={{ backgroundColor: '#364cd5' }}
+                >
                   Get Started
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                  style={{ borderColor: 'rgba(54, 76, 213, 0.2)' }}
+                >
+                  <span className="sr-only">Menu</span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
                 </Button>
               </div>
             </div>
           </div>
 
           {/* Hero Section */}
-          <div className="px-8 py-16 relative">
+          <div className="px-8 py-24 relative">
             <div className="max-w-6xl mx-auto">
-              <div className="text-center max-w-4xl mx-auto space-y-8">
+              <div className="text-center max-w-4xl mx-auto space-y-6">
                 {/* Headline - Fixed position with text transitions */}
-                <div className="relative h-32 flex items-center justify-center">
+                <div className="relative h-24 flex items-center justify-center">
                   {Object.entries(scenarios).map(([key, scenario]) => (
                     <TextTransition
                       key={`headline-${key}`}
@@ -704,7 +717,7 @@ export const DemoInteractive: React.FC = () => {
                 </div>
 
                 {/* Subheadline - Fixed position with text transitions */}
-                <div className="relative h-16 flex items-center justify-center">
+                <div className="relative h-12 flex items-center justify-center">
                   {Object.entries(scenarios).map(([key, scenario]) => (
                     <TextTransition
                       key={`subheadline-${key}`}
@@ -719,7 +732,7 @@ export const DemoInteractive: React.FC = () => {
                 </div>
 
                 {/* CTAs - Fixed position */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                   <div className="relative">
                     {Object.entries(scenarios).map(([key, scenario]) => (
                       <TextTransition
@@ -729,7 +742,7 @@ export const DemoInteractive: React.FC = () => {
                       >
                         <Button 
                           className="text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg whitespace-nowrap" 
-                          style={{ backgroundColor: '#F73029' }}
+                          style={{ backgroundColor: '#364cd5' }}
                         >
                           {scenario.content.ctaPrimary}
                         </Button>
@@ -738,124 +751,210 @@ export const DemoInteractive: React.FC = () => {
                     {/* Placeholder for sizing */}
                     <Button 
                       className="opacity-0 font-semibold px-8 py-4 rounded-lg text-lg"
-                      style={{ backgroundColor: '#F73029' }}
+                      style={{ backgroundColor: '#364cd5' }}
                     >
                       Schedule Enterprise Demo
                     </Button>
                   </div>
-                  <div className="relative">
-                    {Object.entries(scenarios).map(([key, scenario]) => (
-                      <TextTransition
-                        key={`cta-secondary-${key}`}
-                        isActive={activeScenario === key && !isTransitioning}
-                        className="absolute inset-0 flex items-center justify-center"
-                      >
-                        <Button variant="outline" className="px-8 py-4 text-lg rounded-lg whitespace-nowrap">
-                          {scenario.content.ctaSecondary}
-                        </Button>
-                      </TextTransition>
-                    ))}
-                    {/* Placeholder for sizing */}
-                    <Button variant="outline" className="opacity-0 px-8 py-4 text-lg rounded-lg">
-                      Download ROI Calculator
-                    </Button>
-                  </div>
                 </div>
 
-                {/* Trust Indicators */}
-                <div className="flex items-center justify-center gap-4 text-sm text-gray-500 pt-6">
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Free trial</span>
+                {/* Trial Features */}
+                <div className="flex items-center justify-center gap-4 text-sm text-gray-600 pt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                    Free trial
                   </div>
-                  <span>•</span>
-                  <span>No credit card required</span>
-                  <span>•</span>
-                  <span>Cancel anytime</span>
+                  <div>•</div>
+                  <div>No credit card required</div>
+                  <div>•</div>
+                  <div>Cancel anytime</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Email Newsletter - Subscriber Pricing Section */}
+          {/* Subscriber Pricing Section for Email Newsletter */}
           <motion.div
             id="subscriber-pricing"
-            className="px-8 py-12 border-t bg-gradient-to-br from-blue-50 to-indigo-50"
-            style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
-            initial={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
             animate={{ 
-              opacity: activeScenario === 'email' && !isTransitioning ? 1 : 0,
-              height: activeScenario === 'email' && !isTransitioning ? 'auto' : 0
+              height: activeScenario === 'email' ? 'auto' : 0,
+              opacity: activeScenario === 'email' ? 1 : 0
             }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">
-                  <Star className="w-5 h-5 text-white" />
+            <div className="px-8 py-16 border-t bg-gradient-to-br from-blue-50 to-slate-50" style={{ borderColor: 'rgba(54, 76, 213, 0.1)' }}>
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
+                      <CreditCard className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Exclusive Subscriber Pricing</h3>
+                  </div>
+                  <p className="text-gray-600 max-w-3xl mx-auto">Special pricing for our newsletter subscribers - Save up to 40% on annual plans</p>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Exclusive Subscriber Benefits</h3>
+                
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="bg-white p-8 rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div className="text-center mb-6">
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Pro</h4>
+                      <div className="text-3xl font-bold text-blue-600 mb-1">$49<span className="text-lg text-gray-500">/mo</span></div>
+                      <div className="text-sm text-red-500 font-medium">Save 20% - Usually $59/mo</div>
+                    </div>
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>All basic features</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Up to 25 team members</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Advanced analytics</span>
+                      </div>
+                    </div>
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">Upgrade to Pro</Button>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300 relative">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <Badge className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-1">Most Popular</Badge>
+                    </div>
+                    <div className="text-center mb-6">
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Business</h4>
+                      <div className="text-3xl font-bold text-blue-600 mb-1">$99<span className="text-lg text-gray-500">/mo</span></div>
+                      <div className="text-sm text-red-500 font-medium">Save 30% - Usually $149/mo</div>
+                    </div>
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>All Pro features</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Unlimited team members</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Priority support</span>
+                      </div>
+                    </div>
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">Upgrade to Business</Button>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div className="text-center mb-6">
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Enterprise</h4>
+                      <div className="text-3xl font-bold text-blue-600 mb-1">$199<span className="text-lg text-gray-500">/mo</span></div>
+                      <div className="text-sm text-red-500 font-medium">Save 40% - Usually $299/mo</div>
+                    </div>
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>All Business features</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Custom integrations</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Dedicated support</span>
+                      </div>
+                    </div>
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">Contact Sales</Button>
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-600 mb-8">Special pricing and features just for our newsletter subscribers</p>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-xl p-6 border border-blue-200 shadow-sm">
-                  <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mx-auto mb-4">
-                    <CheckCircle className="w-6 h-6 text-green-600" />
+            </div>
+          </motion.div>
+
+          {/* G2 Review - Enterprise Trust Section */}
+          <motion.div
+            id="enterprise-trust-section"
+            className="overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ 
+              height: activeScenario === 'g2' ? 'auto' : 0,
+              opacity: activeScenario === 'g2' ? 1 : 0
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <div className="px-8 py-16 border-t bg-gradient-to-br from-gray-50 to-slate-50" style={{ borderColor: 'rgba(54, 76, 213, 0.1)' }}>
+              <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-12">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                      <Shield className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Enterprise-Grade Security & Compliance</h3>
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Pro Plan</h4>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">$29<span className="text-lg text-gray-600">/mo</span></div>
-                  <div className="text-sm text-green-600 font-medium mb-4">30% subscriber discount</div>
-                  <Button className="w-full" style={{ backgroundColor: '#F73029' }}>Upgrade Now</Button>
+                  <p className="text-gray-600 max-w-3xl mx-auto">Trusted by Fortune 500 companies with the highest security standards and compliance requirements</p>
                 </div>
-                <div className="bg-white rounded-xl p-6 border-2 border-blue-300 shadow-md relative">
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-blue-500">Most Popular</Badge>
+                
+                <div className="grid md:grid-cols-4 gap-8">
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-xl bg-green-100 flex items-center justify-center mx-auto mb-4">
+                      <Lock className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">SOC 2 Type II</h4>
+                    <p className="text-sm text-gray-600">Independently audited security controls</p>
                   </div>
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-4">
-                    <Star className="w-6 h-6 text-blue-600" />
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center mx-auto mb-4">
+                      <Shield className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">GDPR Compliant</h4>
+                    <p className="text-sm text-gray-600">Full European data protection compliance</p>
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Team Plan</h4>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">$89<span className="text-lg text-gray-600">/mo</span></div>
-                  <div className="text-sm text-green-600 font-medium mb-4">40% subscriber discount</div>
-                  <Button className="w-full" style={{ backgroundColor: '#F73029' }}>Upgrade Now</Button>
-                </div>
-                <div className="bg-white rounded-xl p-6 border border-blue-200 shadow-sm">
-                  <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mx-auto mb-4">
-                    <Building className="w-6 h-6 text-purple-600" />
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-xl bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                      <Globe className="w-8 h-8 text-purple-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">99.9% Uptime</h4>
+                    <p className="text-sm text-gray-600">Enterprise SLA with guaranteed availability</p>
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">Enterprise</h4>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">$299<span className="text-lg text-gray-600">/mo</span></div>
-                  <div className="text-sm text-green-600 font-medium mb-4">50% subscriber discount</div>
-                  <Button variant="outline" className="w-full">Contact Sales</Button>
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-xl bg-orange-100 flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-8 h-8 text-orange-600" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">SSO Integration</h4>
+                    <p className="text-sm text-gray-600">SAML, OAuth, and directory integration</p>
+                  </div>
                 </div>
               </div>
             </div>
           </motion.div>
 
           {/* Value Props Section */}
-          <div className="px-8 py-16 bg-gray-50 border-t" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+          <div className="px-8 py-24 bg-white border-t" style={{ borderColor: 'rgba(54, 76, 213, 0.1)' }}>
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Why leading companies choose FlowSync</h2>
+              <div className="text-center mb-24">
+                <h2 className="text-4xl font-semibold text-gray-900 mb-6">Why leading companies choose FlowSync</h2>
+                <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full" style={{ backgroundColor: '#364cd5' }}></div>
               </div>
 
               {/* Value Props Grid - Fixed positions */}
-              <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <div className="grid md:grid-cols-3 gap-20">
                 {[0, 1, 2].map((index) => (
-                  <div key={index} className="text-center relative">
-                    <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                      <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-lg font-bold">
+                  <div key={index} className="text-center relative group">
+                    <div className="w-20 h-20 bg-white shadow-lg rounded-2xl flex items-center justify-center mx-auto mb-8">
+                      <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl font-medium" style={{ backgroundColor: '#364cd5' }}>
                         {index + 1}
                       </div>
                     </div>
-                    <div className="relative h-20 flex items-center justify-center">
+                    <div className="relative min-h-[60px] flex items-center justify-center">
                       {Object.entries(scenarios).map(([key, scenario]) => (
                         <TextTransition
                           key={`value-prop-${key}-${index}`}
                           isActive={activeScenario === key && !isTransitioning}
                           className="absolute inset-0 flex items-center justify-center"
                         >
-                          <p className="text-lg text-gray-700 font-medium">
+                          <p className="text-2xl text-gray-700 font-normal">
                             {scenario.content.valueProps[index]}
                           </p>
                         </TextTransition>
@@ -868,26 +967,27 @@ export const DemoInteractive: React.FC = () => {
           </div>
 
           {/* Features Section */}
-          <div className="px-8 py-16 border-t" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+          <div className="px-8 py-24 border-t bg-white" style={{ borderColor: 'rgba(54, 76, 213, 0.1)' }}>
             <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Built for your workflow</h2>
+              <div className="text-center mb-20">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Built for your workflow</h2>
+                <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full" style={{ backgroundColor: '#364cd5' }}></div>
               </div>
 
               {/* Features Grid - Fixed positions */}
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-3 gap-12">
                 {[0, 1, 2].map((index) => (
-                  <div key={index} className="text-center group relative">
+                  <div key={index} className="text-center group relative hover:translate-y-[-8px] transition-all duration-300">
                     {/* Icon container - fixed */}
-                    <div className="relative h-16 flex items-center justify-center mb-6">
+                    <div className="relative h-16 flex items-center justify-center mb-8">
                       {Object.entries(scenarios).map(([key, scenario]) => (
                         <TextTransition
                           key={`feature-icon-${key}-${index}`}
                           isActive={activeScenario === key && !isTransitioning}
                           className="absolute inset-0 flex items-center justify-center"
                         >
-                          <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center group-hover:from-red-500 group-hover:to-red-600 transition-all duration-300">
-                            <div className="text-gray-600 group-hover:text-white transition-colors">
+                          <div className="w-20 h-20 bg-slate-50 rounded-2xl flex items-center justify-center group-hover:bg-blue-50 transition-all duration-300">
+                            <div className="text-blue-600 transition-colors" style={{ color: '#364cd5' }}>
                               {scenario.content.features[index].icon}
                             </div>
                           </div>
@@ -911,12 +1011,12 @@ export const DemoInteractive: React.FC = () => {
                     </div>
 
                     {/* Description - fixed height */}
-                    <div className="relative h-16 flex items-center justify-center">
+                    <div className="relative h-20 flex items-center justify-center">
                       {Object.entries(scenarios).map(([key, scenario]) => (
                         <TextTransition
                           key={`feature-desc-${key}-${index}`}
                           isActive={activeScenario === key && !isTransitioning}
-                          className="absolute inset-0 flex items-center justify-center"
+                          className="absolute inset-0 flex items-center justify-center px-4"
                         >
                           <p className="text-gray-600 leading-relaxed">
                             {scenario.content.features[index].description}
@@ -971,97 +1071,6 @@ export const DemoInteractive: React.FC = () => {
             {/* Blur fade overlay at bottom */}
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
           </div>
-
-          {/* G2 Review - Enterprise Trust Section */}
-          <motion.div
-            id="enterprise-trust-section"
-            className="px-8 py-12 border-t bg-gradient-to-br from-gray-50 to-slate-50"
-            style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ 
-              opacity: activeScenario === 'g2' && !isTransitioning ? 1 : 0,
-              height: activeScenario === 'g2' && !isTransitioning ? 'auto' : 0
-            }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Enterprise-Grade Security & Compliance</h3>
-                </div>
-                <p className="text-gray-600 max-w-3xl mx-auto">Trusted by Fortune 500 companies with the highest security standards and compliance requirements</p>
-              </div>
-              
-              <div className="grid md:grid-cols-4 gap-8 mb-12">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-xl bg-green-100 flex items-center justify-center mx-auto mb-4">
-                    <Lock className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">SOC 2 Type II</h4>
-                  <p className="text-sm text-gray-600">Independently audited security controls</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">GDPR Compliant</h4>
-                  <p className="text-sm text-gray-600">Full European data protection compliance</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-xl bg-purple-100 flex items-center justify-center mx-auto mb-4">
-                    <Globe className="w-8 h-8 text-purple-600" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">99.9% Uptime</h4>
-                  <p className="text-sm text-gray-600">Enterprise SLA with guaranteed availability</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-xl bg-orange-100 flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-8 h-8 text-orange-600" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">SSO Integration</h4>
-                  <p className="text-sm text-gray-600">SAML, OAuth, and directory integration</p>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-sm">
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Trusted by Industry Leaders</h4>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        <span className="text-gray-700">Bank-grade encryption (AES-256)</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        <span className="text-gray-700">Role-based access controls</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        <span className="text-gray-700">Comprehensive audit trails</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-600" />
-                        <span className="text-gray-700">24/7 security monitoring</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                      <div className="text-3xl font-bold text-gray-900 mb-2">10,000+</div>
-                      <div className="text-gray-600">Enterprise customers</div>
-                    </div>
-                    <Button className="w-full" style={{ backgroundColor: '#F73029' }}>
-                      Schedule Security Review
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
           {/* Content continuation blur */}
           <div className="h-48 bg-gradient-to-b from-gray-50 to-white relative">
