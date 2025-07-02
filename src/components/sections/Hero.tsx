@@ -42,7 +42,7 @@ export const Hero: React.FC = () => {
                 className="text-white hover:opacity-90 font-medium px-6 py-3 rounded-none w-full sm:w-auto" 
                 style={{ backgroundColor: '#F73029' }}
               >
-                Start For Free
+                Book a Demo
               </Button>
             </motion.div>
           </motion.div>

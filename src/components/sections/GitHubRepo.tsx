@@ -50,7 +50,7 @@ export const GitHubRepo: React.FC = () => {
             className="text-white hover:opacity-90 font-medium px-8 rounded-none"
             style={{ backgroundColor: '#F73029' }}
           >
-            Start For Free
+            Book a Demo
           </Button>
         </motion.div>
       </div>

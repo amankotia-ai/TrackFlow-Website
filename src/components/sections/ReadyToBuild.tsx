@@ -69,7 +69,7 @@ export const ReadyToBuild: React.FC = () => {
                   className="text-white font-medium px-8 rounded-none w-full sm:w-auto" 
                   style={{ backgroundColor: '#F73029' }}
                 >
-                  Start For Free
+                  Book a Demo
                 </Button>
               </motion.div>
             </motion.div>

@@ -71,7 +71,7 @@ export const Navigation: React.FC = () => {
               className="text-white hover:opacity-90 font-medium px-6 rounded-none border-t border-b border-r h-[44px]" 
               style={{ backgroundColor: '#F73029', borderColor: 'rgba(247, 48, 41, 0.1)' }}
             >
-              Start For Free
+              Book a Demo
             </Button>
           </motion.div>
         </motion.div>
@@ -154,7 +154,7 @@ export const Navigation: React.FC = () => {
                     className="text-white hover:opacity-90 font-medium px-6 py-3 rounded-none" 
                     style={{ backgroundColor: '#F73029' }}
                   >
-                    Start For Free
+                    Book a Demo
                   </Button>
                 </motion.div>
               </motion.div>
