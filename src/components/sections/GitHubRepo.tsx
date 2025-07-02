@@ -13,7 +13,7 @@ export const GitHubRepo: React.FC = () => {
       style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.5 }}
       variants={staggerContainer}
     >
       <div className="text-center">

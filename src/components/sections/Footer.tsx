@@ -4,7 +4,7 @@ import { slideUp, slideLeft, slideRight, staggerContainer, staggerItem, scaleIn 
 
 export const Footer: React.FC = () => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
     <motion.footer

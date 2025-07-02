@@ -11,8 +11,9 @@ export const Navigation: React.FC = () => {
   const { openForm } = useCloudForm();
 
   const navItems = [
-    { name: 'Why TrackFlow', href: '#' },
-    { name: 'How it Works', href: '#' },
+    { name: 'Examples', href: '/examples' },
+    { name: 'Use Cases', href: '/use-cases' },
+    { name: 'Demo', href: '/demo' },
     { name: 'Blog', href: '/blog' }
   ];
 

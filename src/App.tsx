@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
+import { Examples } from "./pages/Examples";
+import { UseCases } from "./pages/UseCases";
+import Demo from "./pages/Demo";
 import { CloudFormProvider, useCloudForm } from "./contexts/CloudFormContext";
 import { CloudOverlayForm } from "./components/ui/cloud-overlay-form";
 
@@ -24,6 +27,9 @@ const AppContent = () => {
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/examples" element={<Examples />} />
+            <Route path="/use-cases" element={<UseCases />} />
+            <Route path="/demo" element={<Demo />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

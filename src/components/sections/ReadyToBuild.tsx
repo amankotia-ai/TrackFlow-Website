@@ -6,7 +6,7 @@ import { useCloudForm } from '@/contexts/CloudFormContext';
 
 export const ReadyToBuild: React.FC = () => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
   const { openForm } = useCloudForm();
 
   return (

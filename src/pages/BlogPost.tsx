@@ -10,7 +10,7 @@ import { useCloudForm } from '@/contexts/CloudFormContext';
 
 export const BlogPost: React.FC = () => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
   const { openForm } = useCloudForm();
 
   // Helper function to create URL-friendly slugs
@@ -193,7 +193,7 @@ export const BlogPost: React.FC = () => {
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.5 }}
         variants={staggerContainer}
       >
         <div className="px-4 md:px-8 py-12 md:py-16">
@@ -241,7 +241,7 @@ export const BlogPost: React.FC = () => {
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.5 }}
         variants={staggerContainer}
       >
         <motion.h2 

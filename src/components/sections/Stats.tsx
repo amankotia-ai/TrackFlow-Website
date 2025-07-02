@@ -29,7 +29,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, label }) => (
 
 export const Stats: React.FC = () => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   const stats = [
     { value: "80B+", label: "Tokens Scraped" },

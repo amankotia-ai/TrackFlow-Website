@@ -79,7 +79,7 @@ const SettingsIcon: React.FC = () => (
 
 export const UseCases: React.FC = () => {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   const useCases = [
     { title: "Track visitor journeys", icon: "/image 114_layerstyle.svg" },

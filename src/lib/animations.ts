@@ -476,4 +476,89 @@ export const pageTransition: Variants = {
       ease: smoothScrollEasing
     }
   }
+};
+
+// Smooth, elegant animations for Marketing/Sales sections
+export const gentleFadeInLeft: Variants = {
+  hidden: { 
+    opacity: 0, 
+    x: -20,
+    y: 10
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 200,
+      damping: 30,
+      mass: 1
+    }
+  }
+};
+
+export const gentleFadeInRight: Variants = {
+  hidden: { 
+    opacity: 0, 
+    x: 20,
+    y: 10
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 200,
+      damping: 30,
+      mass: 1
+    }
+  }
+};
+
+export const smoothFadeUp: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 20 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 25,
+      mass: 0.8
+    }
+  }
+};
+
+export const elegantImageReveal: Variants = {
+  hidden: { 
+    opacity: 0,
+    scale: 0.95,
+    y: 15
+  },
+  visible: { 
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 250,
+      damping: 35,
+      mass: 1.2
+    }
+  }
+};
+
+export const smoothStaggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1
+    }
+  }
 }; 
