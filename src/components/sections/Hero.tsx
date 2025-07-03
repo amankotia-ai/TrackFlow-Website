@@ -35,28 +35,26 @@ export const Hero: React.FC = () => {
             Make each site visit as personal as <span className="text-[#F73029]">a sales call</span>
           </motion.h1>
           <motion.p 
-            className="text-sm text-gray-600 max-w-2xl mb-8"
+            className="text-sm text-gray-600 max-w-2xl mb-16"
             variants={staggerItem}
           >
             Serve custom content to each of your website visitors based on their interests.
           </motion.p>
           <motion.div 
-            className="mb-16"
+            className="mb-8"
             variants={staggerItem}
           >
-            <motion.div whileHover={buttonHover}>
-              <Button 
-                className="text-white hover:opacity-90 font-normal px-8 py-3 text-base bg-[#F73029] rounded-none flex items-center gap-2" 
-                onClick={handleDemoClick}
-              >
-                <img 
-                  src="/imageaaa 95_layerstyle.svg" 
-                  alt="" 
-                  className="w-5 h-5"
-                />
-                Watch TrackFlow in Action
-              </Button>
-            </motion.div>
+            <Button 
+              className="text-[#F73029] font-medium px-8 py-3 text-base bg-transparent hover:bg-transparent rounded-none flex items-center gap-2" 
+              onClick={handleDemoClick}
+            >
+              <img 
+                src="/imageaaa 95_layerstyle.svg" 
+                alt="" 
+                className="w-5 h-5"
+              />
+              Watch TrackFlow in Action
+            </Button>
           </motion.div>
           
           {/* Demo Section */}

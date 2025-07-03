@@ -192,7 +192,7 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
     >
       {/* Demo Interface */}
       <motion.div 
-        className="relative overflow-hidden bg-gradient-to-b from-[#F7F9FF] to-white/80 rounded-none max-w-[95%] mx-auto backdrop-blur-sm"
+        className="relative overflow-hidden bg-gradient-to-b from-white to-white/80 rounded-none max-w-[95%] mx-auto backdrop-blur-sm"
         variants={staggerItem}
         animate={{
           y: isDemoLifted ? -20 : 0,
@@ -213,11 +213,11 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
           boxShadow: isDemoLifted 
             ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 15px 25px -8px rgba(54, 76, 213, 0.1), 0 0 0 1px rgba(54, 76, 213, 0.05)' 
             : 'none',
-          background: 'linear-gradient(180deg, #F7F9FF 0%, rgba(247, 249, 255, 0.8) 100%)'
+          background: 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%)'
         }}
       >
         {/* Analytics Bar */}
-        <div className="bg-gray-50 px-8 py-4 border-b flex flex-wrap items-center justify-between gap-4" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+        <div className="bg-white px-8 py-4 border-b flex flex-wrap items-center justify-between gap-4" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-gray-500" />
@@ -258,14 +258,14 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
         </div>
 
         {/* Browser Header */}
-        <div className="bg-gray-50 px-6 py-3 border-b" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+        <div className="bg-white px-6 py-3 border-b" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
           <div className="flex items-center gap-2">
             <div className="flex gap-1">
               <div className="w-3 h-3 rounded-full bg-red-400"></div>
               <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
               <div className="w-3 h-3 rounded-full bg-green-400"></div>
             </div>
-            <div className="flex-1 bg-gray-200 rounded px-3 py-1 text-xs text-gray-600">
+            <div className="flex-1 bg-gray-100 rounded px-3 py-1 text-xs text-gray-600">
               {activeScenario === 'default' 
                 ? 'flowsync.com' 
                 : `flowsync.com?utm_source=${currentScenario.source}&utm_campaign=${currentScenario.campaign}`
