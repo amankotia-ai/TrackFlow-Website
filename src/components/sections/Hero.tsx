@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { slideUp, fadeIn, staggerContainer, staggerItem, buttonHover } from '@/lib/animations';
 import { useCloudForm } from '@/contexts/CloudFormContext';
@@ -11,6 +11,32 @@ export const Hero: React.FC = () => {
 
   const handleDemoClick = () => {
     demoRef.current?.triggerRandomScenario();
+  };
+
+  const pulseAnimation = {
+    scale: [1, 1.2, 1],
+    transition: {
+      duration: 3,
+      ease: "easeInOut" as const,
+      repeat: Infinity,
+      repeatType: "reverse" as const
+    }
+  };
+
+  const buttonAnimation: Variants = {
+    initial: { 
+      opacity: 0, 
+      y: 20 
+    },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        delay: 1.2,
+        duration: 0.5,
+        ease: "easeOut" as const
+      }
+    }
   };
 
   return (
@@ -42,16 +68,19 @@ export const Hero: React.FC = () => {
           </motion.p>
           <motion.div 
             className="mb-8"
-            variants={staggerItem}
+            variants={buttonAnimation}
+            initial="initial"
+            animate="animate"
           >
             <Button 
               className="text-[#F73029] font-medium px-8 py-3 text-base bg-transparent hover:bg-transparent rounded-none flex items-center gap-2" 
               onClick={handleDemoClick}
             >
-              <img 
+              <motion.img 
                 src="/imageaaa 95_layerstyle.svg" 
                 alt="" 
-                className="w-5 h-5"
+                className="w-3 h-3"
+                animate={pulseAnimation}
               />
               Watch TrackFlow in Action
             </Button>

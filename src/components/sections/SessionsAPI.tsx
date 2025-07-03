@@ -45,7 +45,7 @@ export const SessionsAPI: React.FC = () => {
             Outbound is personal. Inbound should be too.
           </motion.h2>
           <motion.p 
-            className="text-sm mb-8 text-gray-600"
+            className="text-sm mb-8 text-gray-600 max-w-sm"
             variants={staggerItem}
           >
             Transform anonymous visitors into qualified leads with personalized experiences.
