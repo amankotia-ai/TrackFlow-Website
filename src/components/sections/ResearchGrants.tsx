@@ -20,8 +20,8 @@ export const ResearchGrants: React.FC = () => {
       viewport={{ once: true, amount: 0.4 }}
       variants={smoothStaggerContainer}
     >
-      {/* Marketing Section */}
-      <motion.div 
+      {/* Marketing Section - Hidden for now */}
+      {/* <motion.div 
         className="px-4 md:px-8 py-12 md:py-16"
         ref={marketingRef}
         initial="hidden"
@@ -65,7 +65,7 @@ export const ResearchGrants: React.FC = () => {
       </motion.div>
 
       {/* Full-width divider */}
-      <motion.div 
+      {/* <motion.div 
         className="w-full border-b" 
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         initial={{ scaleX: 0 }}
@@ -76,10 +76,10 @@ export const ResearchGrants: React.FC = () => {
           damping: 20,
           delay: 0.3
         }}
-      />
+      /> */}
 
-      {/* Sales Section */}
-      <motion.div 
+      {/* Sales Section - Hidden for now */}
+      {/* <motion.div 
         className="px-4 md:px-8 py-12 md:py-16"
         ref={salesRef}
         initial="hidden"
@@ -120,7 +120,7 @@ export const ResearchGrants: React.FC = () => {
             />
           </motion.div>
         </div>
-      </motion.div>
+      </motion.div> */}
     </motion.div>
   );
 }; 

@@ -4,11 +4,12 @@ import { slideUp, staggerContainer, staggerItem, fadeIn } from '@/lib/animations
 
 interface UseCaseCardProps {
   title: string;
+  description: string;
   icon: React.ReactNode;
   items: string[];
 }
 
-const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon, items }) => (
+const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, description, icon, items }) => (
   <motion.div 
     className="border-r border-b p-8 md:p-10 flex flex-col justify-start min-h-[400px] last:border-r-0 md:even:border-r-0 lg:odd:border-r" 
     style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
@@ -16,7 +17,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon, items }) => (
   >
     {/* Header Section */}
     <motion.div 
-      className="flex items-center gap-3 mb-6"
+      className="flex items-center gap-3 mb-4"
       variants={fadeIn}
     >
       <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
@@ -29,6 +30,14 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon, items }) => (
         {title}
       </motion.h3>
     </motion.div>
+    
+    {/* Description */}
+    <motion.p 
+      className="text-sm text-gray-600 mb-6 leading-relaxed"
+      variants={fadeIn}
+    >
+      {description}
+    </motion.p>
     
     <motion.div className="flex-1 flex flex-col" variants={fadeIn}>
       {/* Use Cases List */}
@@ -83,43 +92,47 @@ export const UseCasesList: React.FC = () => {
 
   const useCases = [
     {
-      title: "B2B Lead Generation",
-      icon: <OfficeIcon />,
-      items: [
-        "Different landing pages for LinkedIn vs. Google Ads traffic",
-        "Industry-specific messaging based on campaign parameters",
-        "Executive vs. end-user content personalization",
-        "Lead magnet optimization by traffic source"
-      ]
-    },
-    {
-      title: "E-commerce Personalization",
-      icon: <ShoppingIcon />,
-      items: [
-        "Product highlighting based on campaign type",
-        "Geographic offers using UTM geo parameters",
-        "Seasonal promotions for specific traffic sources",
-        "Cart abandonment messaging by visitor source"
-      ]
-    },
-    {
-      title: "SaaS Marketing Optimization",
-      icon: <CodeIcon />,
-      items: [
-        "Feature highlighting based on referral campaign",
-        "Pricing page optimization by traffic source",
-        "Demo vs. free trial CTAs by visitor intent",
-        "Onboarding flow customization"
-      ]
-    },
-    {
-      title: "Campaign Performance Optimization",
+      title: "Track Visitor Journeys",
+      description: "Complete UTM parameter tracking and multi-visit intelligence",
       icon: <TrendingUpIcon />,
       items: [
-        "Landing page variants for each ad group",
-        "UTM-based offer personalization",
-        "Social proof matching traffic demographics",
-        "CTA optimization by campaign performance"
+        "First-touch and last-touch UTM attribution",
+        "Visit count and session-based personalization",
+        "Time-on-page triggered content changes",
+        "Cross-session visitor recognition"
+      ]
+    },
+    {
+      title: "Tailor Existing Copy",
+      description: "CSS selector-based content replacement system",
+      icon: <CodeIcon />,
+      items: [
+        "Replace any text, button, or link content",
+        "UTM parameter condition matching",
+        "Rule priority and conflict resolution",
+        "Real-time content personalization"
+      ]
+    },
+    {
+      title: "Per-Visit Personalization",
+      description: "Dynamic experiences that evolve with each visit",
+      icon: <ShoppingIcon />,
+      items: [
+        "Show/hide elements based on visit count",
+        "Time-based content reveals",
+        "Returning visitor exclusive content",
+        "CSS class manipulation for styling changes"
+      ]
+    },
+    {
+      title: "Fine-Tune Personalization",
+      description: "Flexible rule engine with precise targeting",
+      icon: <OfficeIcon />,
+      items: [
+        "Target elements using CSS selectors",
+        "Combine multiple conditions (UTM + visit count + time)",
+        "Hide, show, add/remove classes actions",
+        "Rule execution tracking and analytics"
       ]
     }
   ];
@@ -164,6 +177,7 @@ export const UseCasesList: React.FC = () => {
           <UseCaseCard 
             key={index} 
             title={useCase.title}
+            description={useCase.description}
             icon={useCase.icon}
             items={useCase.items}
           />

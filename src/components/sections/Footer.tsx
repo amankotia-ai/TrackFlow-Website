@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
               variants={scaleIn}
             />
             <motion.p 
-              className="text-sm mb-4 text-gray-600"
+              className="text-sm mb-4 text-gray-600 max-w-56"
               variants={slideUp}
             >
               Stand out from the crowd with next-generation marketing.

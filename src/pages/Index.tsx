@@ -21,6 +21,10 @@ const Index = () => {
         <SessionsAPI />
       </div>
       {/* <Stats /> */}
+      <div 
+        className="max-w-[72rem] mx-auto border-l border-r h-[72px]"
+        style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+      ></div>
       <UseCases />
       <GitHubRepo />
       <ResearchGrants />

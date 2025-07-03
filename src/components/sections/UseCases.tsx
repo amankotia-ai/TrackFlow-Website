@@ -4,12 +4,13 @@ import { slideUp, staggerContainer, staggerItem, fadeIn } from '@/lib/animations
 
 interface UseCaseCardProps {
   title: string;
+  description: string;
   icon?: string;
 }
 
-const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon }) => (
+const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, description, icon }) => (
   <motion.div 
-    className="border-r border-b p-6 md:p-8 flex flex-col justify-between min-h-[140px] md:min-h-[160px] last:border-r-0 md:even:border-r md:odd:border-r lg:nth-child-4n:border-r-0" 
+    className="border-r border-b p-6 md:p-8 flex flex-col justify-between min-h-[200px] md:min-h-[220px] last:border-r-0 md:even:border-r md:odd:border-r lg:nth-child-4n:border-r-0" 
     style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
     variants={staggerItem}
   >
@@ -35,12 +36,20 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, icon }) => (
         </div>
       )}
     </motion.div>
-    <motion.h3 
-      className="text-sm md:text-base font-medium text-gray-800"
-      variants={slideUp}
-    >
-      {title}
-    </motion.h3>
+    <div className="flex-1">
+      <motion.h3 
+        className="text-sm md:text-base font-medium text-gray-800 mb-2"
+        variants={slideUp}
+      >
+        {title}
+      </motion.h3>
+      <motion.p 
+        className="text-xs md:text-sm text-gray-600 leading-relaxed"
+        variants={fadeIn}
+      >
+        {description}
+      </motion.p>
+    </div>
   </motion.div>
 );
 
@@ -82,10 +91,26 @@ export const UseCases: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   const useCases = [
-    { title: "Track visitor journeys", icon: "/image 114_layerstyle.svg" },
-    { title: "Tailor existing copy", icon: "/image 115_layerstyle.svg" },
-    { title: "Per-visit-personalization", icon: "/image 116_layerstyle.svg" },
-    { title: "Fine-tune personalization", icon: "/image 117_layerstyle.svg" }
+    { 
+      title: "Track visitor journeys", 
+      description: "Complete UTM parameter tracking and multi-visit intelligence",
+      icon: "/image 114_layerstyle.svg" 
+    },
+    { 
+      title: "Tailor existing copy", 
+      description: "CSS selector-based content replacement and personalization",
+      icon: "/image 115_layerstyle.svg" 
+    },
+    { 
+      title: "Per-visit personalization", 
+      description: "Dynamic experiences that evolve with each visit",
+      icon: "/image 116_layerstyle.svg" 
+    },
+    { 
+      title: "Fine-tune personalization", 
+      description: "Flexible rule engine with precise targeting controls",
+      icon: "/image 117_layerstyle.svg" 
+    }
   ];
 
   return (
@@ -104,13 +129,13 @@ export const UseCases: React.FC = () => {
         How it works
       </motion.div>
       <motion.h2 
-        className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
+        className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4 max-w-lg"
         variants={slideUp}
       >
         Website personalization on autopilot
       </motion.h2>
       <motion.p 
-        className="text-sm mb-8 md:mb-12 text-gray-600 max-w-4xl"
+        className="text-sm mb-8 md:mb-12 text-gray-600 max-w-lg"
         variants={slideUp}
       >
         TrackFlow determines what your website visitors are interested in, and modifies or creates content to move each one down the funnel.
@@ -125,6 +150,7 @@ export const UseCases: React.FC = () => {
           <UseCaseCard 
             key={index} 
             title={useCase.title}
+            description={useCase.description}
             icon={useCase.icon}
           />
         ))}

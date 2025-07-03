@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,6 +34,7 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
   const [activeScenario, setActiveScenario] = useState('default');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDemoLifted, setIsDemoLifted] = useState(false);
+  const [hasInitialAnimationCompleted, setHasInitialAnimationCompleted] = useState(false);
 
   // Expanded scenarios object with 4 different examples
   const scenarios = {
@@ -139,12 +140,26 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
     }
   };
 
+  // Initial animation on component mount
+  useEffect(() => {
+    // Delay the initial animation slightly to ensure the component is fully rendered
+    const timer = setTimeout(() => {
+      setIsDemoLifted(true);
+      setHasInitialAnimationCompleted(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const triggerRandomScenario = () => {
     const scenarioKeys = Object.keys(scenarios).filter(key => key !== 'default' && key !== activeScenario);
     const randomKey = scenarioKeys[Math.floor(Math.random() * scenarioKeys.length)];
     
     setIsTransitioning(true);
-    setIsDemoLifted(true);
+    // Only set lifted state if initial animation hasn't completed yet
+    if (!hasInitialAnimationCompleted) {
+      setIsDemoLifted(true);
+    }
     
     setTimeout(() => {
       setActiveScenario(randomKey);
@@ -164,7 +179,10 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
     if (scenarioKey === activeScenario) return;
     
     setIsTransitioning(true);
-    setIsDemoLifted(true);
+    // Only set lifted state if initial animation hasn't completed yet
+    if (!hasInitialAnimationCompleted) {
+      setIsDemoLifted(true);
+    }
     
     setTimeout(() => {
       setActiveScenario(scenarioKey);
@@ -176,9 +194,15 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
   };
 
   const handleReset = () => {
-    setIsDemoLifted(false);
-    setActiveScenario('default');
-    setIsTransitioning(false);
+    // Keep the demo lifted if initial animation has completed
+    if (hasInitialAnimationCompleted) {
+      setActiveScenario('default');
+      setIsTransitioning(false);
+    } else {
+      setIsDemoLifted(false);
+      setActiveScenario('default');
+      setIsTransitioning(false);
+    }
   };
 
   const currentScenario = scenarios[activeScenario];
@@ -194,14 +218,22 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
       <motion.div 
         className="relative overflow-hidden bg-gradient-to-b from-white to-white/80 rounded-none max-w-[95%] mx-auto backdrop-blur-sm"
         variants={staggerItem}
+        initial={{
+          y: 20,
+          scale: 0.98,
+          rotateX: 0,
+          borderRadius: '0rem',
+          opacity: 0.8,
+        }}
         animate={{
           y: isDemoLifted ? -20 : 0,
           scale: isDemoLifted ? 1.02 : 1,
           rotateX: isDemoLifted ? 1 : 0,
           borderRadius: isDemoLifted ? '0.5rem' : '0rem',
+          opacity: 1,
         }}
         transition={{ 
-          duration: 0.4, 
+          duration: 0.8, 
           ease: [0.22, 1, 0.36, 1],
           type: "spring",
           stiffness: 100,
