@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-// Reuse the same TextTransition component
+// Enhanced TextTransition component with smoother animations
 const TextTransition: React.FC<{ 
   children: React.ReactNode; 
   isActive: boolean; 
@@ -20,11 +20,18 @@ const TextTransition: React.FC<{
 }> = ({ children, isActive, className = "" }) => (
   <motion.div
     className={className}
+    initial={{ opacity: 0, y: 10 }}
     animate={{
       opacity: isActive ? 1 : 0,
+      y: isActive ? 0 : 10,
       filter: isActive ? "blur(0px)" : "blur(4px)",
     }}
-    transition={{ duration: 0.4, ease: "easeInOut" }}
+    transition={{ 
+      duration: 0.6, 
+      ease: [0.22, 1, 0.36, 1],
+      opacity: { duration: 0.4 },
+      filter: { duration: 0.3 }
+    }}
   >
     {children}
   </motion.div>
@@ -140,13 +147,12 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
     }
   };
 
-  // Initial animation on component mount
+  // Unified animation timing
   useEffect(() => {
-    // Delay the initial animation slightly to ensure the component is fully rendered
     const timer = setTimeout(() => {
       setIsDemoLifted(true);
       setHasInitialAnimationCompleted(true);
-    }, 500);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -210,20 +216,22 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
   return (
     <motion.div 
       className="w-[135%] -ml-[17.5%] mx-auto"
-      initial="hidden"
-      animate="visible"
-      variants={staggerContainer}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ 
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }}
     >
       {/* Demo Interface */}
       <motion.div 
         className="relative overflow-hidden bg-gradient-to-b from-white to-white/80 rounded-none max-w-[95%] mx-auto backdrop-blur-sm"
-        variants={staggerItem}
         initial={{
-          y: 20,
-          scale: 0.98,
+          y: 0,
+          scale: 1,
           rotateX: 0,
           borderRadius: '0rem',
-          opacity: 0.8,
+          opacity: 1,
         }}
         animate={{
           y: isDemoLifted ? -20 : 0,
@@ -232,24 +240,29 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
           borderRadius: isDemoLifted ? '0.5rem' : '0rem',
           opacity: 1,
         }}
-        transition={{ 
-          duration: 0.8, 
-          ease: [0.22, 1, 0.36, 1],
+        transition={{
           type: "spring",
-          stiffness: 100,
-          damping: 15
+          stiffness: 40,
+          damping: 20,
+          mass: 1,
+          restDelta: 0.001,
+          restSpeed: 0.001
         }}
         style={{
           transformStyle: 'preserve-3d',
           transformOrigin: 'center center',
           boxShadow: isDemoLifted 
-            ? '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 15px 25px -8px rgba(54, 76, 213, 0.1), 0 0 0 1px rgba(54, 76, 213, 0.05)' 
-            : 'none',
+            ? '0 30px 60px -15px rgba(0, 0, 0, 0.15), 0 15px 25px -8px rgba(54, 76, 213, 0.15), 0 0 0 1px rgba(54, 76, 213, 0.05), 0 0 50px rgba(54, 76, 213, 0.05)' 
+            : '0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(54, 76, 213, 0), 0 0 0 0px rgba(54, 76, 213, 0)',
+          transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
           background: 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.8) 100%)'
         }}
       >
         {/* Analytics Bar */}
-        <div className="bg-white px-8 py-4 border-b flex flex-wrap items-center justify-between gap-4" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+        <div 
+          className="bg-white px-8 py-4 border-b flex flex-wrap items-center justify-between gap-4" 
+          style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+        >
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-gray-500" />
@@ -290,7 +303,10 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
         </div>
 
         {/* Browser Header */}
-        <div className="bg-white px-6 py-3 border-b" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+        <div 
+          className="bg-white px-6 py-3 border-b" 
+          style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+        >
           <div className="flex items-center gap-2">
             <div className="flex gap-1">
               <div className="w-3 h-3 rounded-full bg-red-400"></div>
@@ -307,7 +323,9 @@ export const DemoInteractiveSimple = forwardRef<{ triggerRandomScenario: () => v
         </div>
 
         {/* Website Content */}
-        <div className="bg-gradient-to-b from-[#F7F9FF] to-white px-12 pt-4">
+        <div 
+          className="bg-gradient-to-b from-[#F7F9FF] to-white px-12 pt-4"
+        >
           <div className="max-w-6xl mx-auto text-center space-y-2">
             {/* Navbar */}
             <div className="flex items-center justify-between mb-16 bg-white/50 backdrop-blur-sm px-6 py-4 rounded-lg">

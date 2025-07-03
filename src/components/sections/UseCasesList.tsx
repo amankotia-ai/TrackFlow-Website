@@ -17,35 +17,35 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, description, icon, ite
   >
     {/* Header Section */}
     <motion.div 
-      className="flex items-center gap-3 mb-4"
+      className="flex items-start gap-4 mb-8"
       variants={fadeIn}
     >
-      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-full bg-[rgba(247,48,41,0.1)] text-[#F73029] mt-1">
         {icon}
       </div>
-      <motion.h3 
-        className="text-xl md:text-2xl font-medium text-gray-800 leading-tight"
-        variants={slideUp}
-      >
-        {title}
-      </motion.h3>
+      <div className="flex-1">
+        <motion.h3 
+          className="text-xl md:text-2xl font-medium text-gray-800 leading-tight mb-3"
+          variants={slideUp}
+        >
+          {title}
+        </motion.h3>
+        <motion.p 
+          className="text-sm text-gray-600 leading-relaxed"
+          variants={fadeIn}
+        >
+          {description}
+        </motion.p>
+      </div>
     </motion.div>
     
-    {/* Description */}
-    <motion.p 
-      className="text-sm text-gray-600 mb-6 leading-relaxed"
-      variants={fadeIn}
-    >
-      {description}
-    </motion.p>
-    
-    <motion.div className="flex-1 flex flex-col" variants={fadeIn}>
+    <motion.div className="flex-1" variants={fadeIn}>
       {/* Use Cases List */}
-      <div className="space-y-4 mb-auto">
+      <div className="space-y-5">
         {items.map((item, index) => (
-          <div key={index} className="flex items-start gap-3">
+          <div key={index} className="flex items-start gap-4">
             <div className="w-2 h-2 rounded-full bg-red-400 mt-2 flex-shrink-0" style={{ backgroundColor: '#F73029' }}></div>
-            <div className="text-sm leading-relaxed text-gray-700">
+            <div className="text-sm leading-relaxed text-gray-700 flex-1">
               {item}
             </div>
           </div>
@@ -57,7 +57,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, description, icon, ite
 
 // Icon components
 const OfficeIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-700">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
     <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
     <rect x="7" y="7" width="3" height="3" fill="currentColor"/>
     <rect x="14" y="7" width="3" height="3" fill="currentColor"/>
@@ -66,7 +66,7 @@ const OfficeIcon: React.FC = () => (
 );
 
 const ShoppingIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-700">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
     <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L5 3H3m4 10v6a2 2 0 002 2h10a2 2 0 002-2v-6" stroke="currentColor" strokeWidth="2" fill="none"/>
     <circle cx="9" cy="19" r="1" fill="currentColor"/>
     <circle cx="20" cy="19" r="1" fill="currentColor"/>
@@ -74,13 +74,13 @@ const ShoppingIcon: React.FC = () => (
 );
 
 const CodeIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-700">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
     <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="currentColor" strokeWidth="2" fill="none"/>
   </svg>
 );
 
 const TrendingUpIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-gray-700">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
     <polyline points="23,6 13.5,15.5 8.5,10.5 1,18" stroke="currentColor" strokeWidth="2" fill="none"/>
     <polyline points="17,6 23,6 23,12" stroke="currentColor" strokeWidth="2" fill="none"/>
   </svg>

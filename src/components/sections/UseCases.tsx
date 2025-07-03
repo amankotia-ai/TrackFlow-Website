@@ -115,34 +115,28 @@ export const UseCases: React.FC = () => {
 
   return (
     <motion.div 
-      className="max-w-[72rem] mx-auto px-4 md:px-8 py-12 md:py-16 border-t border-l border-r" 
+      className="max-w-[72rem] mx-auto px-4 md:px-8 py-8 md:py-12 border-t border-l border-r" 
       style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={staggerContainer}
     >
-      <motion.div 
-        className="text-sm font-medium mb-6 text-gray-600"
-        variants={slideUp}
-      >
-        How it works
-      </motion.div>
       <motion.h2 
-        className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4 max-w-lg"
+        className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4 max-w-sm"
         variants={slideUp}
       >
-        Website personalization on autopilot
+        Turn your website into your best closer
       </motion.h2>
       <motion.p 
-        className="text-sm mb-8 md:mb-12 text-gray-600 max-w-lg"
+        className="text-sm mb-10 text-gray-600 max-w-xs"
         variants={slideUp}
       >
-        TrackFlow determines what your website visitors are interested in, and modifies or creates content to move each one down the funnel.
+        From the first click to the final visit, TrackFlow adjusts your content to keep leads moving.
       </motion.p>
       
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t -mx-4 md:-mx-8" 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t -mx-4 md:-mx-8 mt-10" 
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         variants={staggerContainer}
       >
