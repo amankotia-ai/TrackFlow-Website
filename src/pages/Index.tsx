@@ -30,7 +30,7 @@ const Index = () => {
       <ResearchGrants />
       <ReadyToBuild />
       <Footer />
-      <Grain opacity={0.085} blendMode="screen" filter="brightness(1.2)" />
+      <Grain opacity={0.098} blendMode="screen" filter="brightness(1.2)" />
     </div>
   );
 };

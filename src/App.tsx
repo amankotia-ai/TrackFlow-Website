@@ -12,7 +12,7 @@ import { Examples } from "./pages/Examples";
 import { UseCases } from "./pages/UseCases";
 import Demo from "./pages/Demo";
 import { CloudFormProvider, useCloudForm } from "./contexts/CloudFormContext";
-import { CloudOverlayForm } from "./components/ui/cloud-overlay-form";
+import { CheckoutForm } from "./components/ui/checkout-form";
 
 const queryClient = new QueryClient();
 
@@ -35,7 +35,7 @@ const AppContent = () => {
           </Routes>
         </BrowserRouter>
       </SmoothScroll>
-      <CloudOverlayForm isOpen={isOpen} onClose={closeForm} />
+      <CheckoutForm isOpen={isOpen} onClose={closeForm} />
     </>
   );
 };

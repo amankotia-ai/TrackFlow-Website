@@ -209,7 +209,7 @@ const ScenarioCard: React.FC<ScenarioCardProps> = ({ title, description, icon, i
           {icon}
         </div>
       </motion.div>
-      <div>
+      <div className="flex-1">
         <motion.h3 
           className="text-sm font-medium text-gray-800 mb-2"
           variants={slideUp}
@@ -223,6 +223,26 @@ const ScenarioCard: React.FC<ScenarioCardProps> = ({ title, description, icon, i
           {description}
         </motion.p>
       </div>
+      
+      {/* Try Now Lozenge */}
+      <motion.div 
+        className="flex justify-start mt-6"
+        variants={fadeIn}
+      >
+        <div 
+          className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
+            isActive 
+              ? 'bg-red-500 text-white' 
+              : 'bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-red-600'
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick();
+          }}
+        >
+          {isActive ? 'Active' : 'Try Now'}
+        </div>
+      </motion.div>
     </div>
   </motion.div>
 );
@@ -245,6 +265,24 @@ const TextTransition: React.FC<{
   </motion.div>
 );
 
+// Component to show personalization indicators
+const PersonalizedIndicator: React.FC<{ show: boolean; className?: string }> = ({ show, className = "" }) => {
+  if (!show) return null;
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700 border border-red-200 ${className}`}
+      style={{ gap: '10px' }}
+    >
+      <Zap className="w-3 h-3 flex-shrink-0" style={{ display: 'inline' }} />
+      <span style={{ display: 'inline', lineHeight: '1' }}>Personalized</span>
+    </motion.div>
+  );
+};
+
 export const DemoInteractive: React.FC = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.4 });
@@ -252,6 +290,7 @@ export const DemoInteractive: React.FC = () => {
   const [activeScenario, setActiveScenario] = useState('default');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDemoLifted, setIsDemoLifted] = useState(false);
+  const [showChanges, setShowChanges] = useState(false);
 
   const scenarios = {
     'default': {
@@ -541,6 +580,9 @@ export const DemoInteractive: React.FC = () => {
         variants={slideUp}
       >
         The demo below shows a generic SaaS website. Select a visitor scenario to see how TrackFlow automatically personalizes content based on visitor source, industry, and engagement patterns.
+        <span className="block mt-2 text-xs text-gray-500">
+          💡 Tip: Click the <Eye className="w-3 h-3 inline mx-1" /> icon in the demo to highlight personalized content
+        </span>
       </motion.p>
 
       {/* Scenario Selector Grid */}
@@ -633,6 +675,15 @@ export const DemoInteractive: React.FC = () => {
               </Badge>
             )}
             <motion.button
+              onClick={() => setShowChanges(!showChanges)}
+              className={`ml-2 p-1 transition-colors ${showChanges ? 'text-red-600' : 'text-gray-400 hover:text-gray-600'}`}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              title="Show personalized content"
+            >
+              <Eye className="w-4 h-4" />
+            </motion.button>
+            <motion.button
               onClick={handleReset}
               className="ml-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
               whileHover={{ scale: 1.1 }}
@@ -709,9 +760,15 @@ export const DemoInteractive: React.FC = () => {
                       isActive={activeScenario === key && !isTransitioning}
                       className="absolute inset-0 flex items-center justify-center"
                     >
-                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                        {scenario.content.headline}
-                      </h1>
+                      <div className="relative">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                          {scenario.content.headline}
+                        </h1>
+                        <PersonalizedIndicator 
+                          show={showChanges && activeScenario !== 'default' && activeScenario === key}
+                          className="absolute -top-2 -right-16 hidden lg:block"
+                        />
+                      </div>
                     </TextTransition>
                   ))}
                 </div>
@@ -724,9 +781,15 @@ export const DemoInteractive: React.FC = () => {
                       isActive={activeScenario === key && !isTransitioning}
                       className="absolute inset-0 flex items-center justify-center"
                     >
-                      <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-                        {scenario.content.subheadline}
-                      </p>
+                      <div className="relative">
+                        <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
+                          {scenario.content.subheadline}
+                        </p>
+                        <PersonalizedIndicator 
+                          show={showChanges && activeScenario !== 'default' && activeScenario === key}
+                          className="absolute -top-2 -right-16 hidden lg:block"
+                        />
+                      </div>
                     </TextTransition>
                   ))}
                 </div>
@@ -740,12 +803,18 @@ export const DemoInteractive: React.FC = () => {
                         isActive={activeScenario === key && !isTransitioning}
                         className="absolute inset-0 flex items-center justify-center"
                       >
-                        <Button 
-                          className="text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg whitespace-nowrap" 
-                          style={{ backgroundColor: '#364cd5' }}
-                        >
-                          {scenario.content.ctaPrimary}
-                        </Button>
+                        <div className="relative">
+                          <Button 
+                            className="text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg whitespace-nowrap" 
+                            style={{ backgroundColor: '#364cd5' }}
+                          >
+                            {scenario.content.ctaPrimary}
+                          </Button>
+                          <PersonalizedIndicator 
+                            show={showChanges && activeScenario !== 'default' && activeScenario === key}
+                            className="absolute -top-2 -right-16 hidden lg:block"
+                          />
+                        </div>
                       </TextTransition>
                     ))}
                     {/* Placeholder for sizing */}
@@ -791,7 +860,13 @@ export const DemoInteractive: React.FC = () => {
                     <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center">
                       <CreditCard className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Exclusive Subscriber Pricing</h3>
+                    <div className="relative">
+                      <h3 className="text-2xl font-bold text-gray-900">Exclusive Subscriber Pricing</h3>
+                      <PersonalizedIndicator 
+                        show={showChanges}
+                        className="absolute -top-2 -right-16 hidden lg:block"
+                      />
+                    </div>
                   </div>
                   <p className="text-gray-600 max-w-3xl mx-auto">Special pricing for our newsletter subscribers - Save up to 40% on annual plans</p>
                 </div>
@@ -891,7 +966,13 @@ export const DemoInteractive: React.FC = () => {
                     <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
                       <Shield className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Enterprise-Grade Security & Compliance</h3>
+                    <div className="relative">
+                      <h3 className="text-2xl font-bold text-gray-900">Enterprise-Grade Security & Compliance</h3>
+                      <PersonalizedIndicator 
+                        show={showChanges}
+                        className="absolute -top-2 -right-16 hidden lg:block"
+                      />
+                    </div>
                   </div>
                   <p className="text-gray-600 max-w-3xl mx-auto">Trusted by Fortune 500 companies with the highest security standards and compliance requirements</p>
                 </div>
@@ -954,9 +1035,15 @@ export const DemoInteractive: React.FC = () => {
                           isActive={activeScenario === key && !isTransitioning}
                           className="absolute inset-0 flex items-center justify-center"
                         >
-                          <p className="text-2xl text-gray-700 font-normal">
-                            {scenario.content.valueProps[index]}
-                          </p>
+                          <div className="relative">
+                            <p className="text-2xl text-gray-700 font-normal">
+                              {scenario.content.valueProps[index]}
+                            </p>
+                            <PersonalizedIndicator 
+                              show={showChanges && activeScenario !== 'default' && activeScenario === key}
+                              className="absolute -top-2 -right-16 hidden lg:block"
+                            />
+                          </div>
                         </TextTransition>
                       ))}
                     </div>
@@ -1003,9 +1090,15 @@ export const DemoInteractive: React.FC = () => {
                           isActive={activeScenario === key && !isTransitioning}
                           className="absolute inset-0 flex items-center justify-center"
                         >
-                          <h4 className="text-xl font-semibold text-gray-900">
-                            {scenario.content.features[index].title}
-                          </h4>
+                          <div className="relative">
+                            <h4 className="text-xl font-semibold text-gray-900">
+                              {scenario.content.features[index].title}
+                            </h4>
+                            <PersonalizedIndicator 
+                              show={showChanges && activeScenario !== 'default' && activeScenario === key}
+                              className="absolute -top-2 -right-16 hidden lg:block"
+                            />
+                          </div>
                         </TextTransition>
                       ))}
                     </div>
@@ -1041,9 +1134,15 @@ export const DemoInteractive: React.FC = () => {
                       isActive={activeScenario === key && !isTransitioning}
                       className="absolute inset-0 flex items-center justify-center"
                     >
-                      <blockquote className="text-2xl text-gray-700 italic max-w-4xl">
-                        "{scenario.content.testimonial.quote}"
-                      </blockquote>
+                      <div className="relative">
+                        <blockquote className="text-2xl text-gray-700 italic max-w-4xl">
+                          "{scenario.content.testimonial.quote}"
+                        </blockquote>
+                        <PersonalizedIndicator 
+                          show={showChanges && activeScenario !== 'default' && activeScenario === key}
+                          className="absolute -top-2 -right-16 hidden lg:block"
+                        />
+                      </div>
                     </TextTransition>
                   ))}
                 </div>

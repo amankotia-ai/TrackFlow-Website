@@ -41,7 +41,7 @@ export const BlogPost: React.FC = () => {
 
   return (
     <div className="min-h-screen text-gray-800 pb-[60px]" style={{ backgroundColor: '#FFFAF3' }}>
-      <Grain opacity={0.085} blendMode="screen" filter="brightness(1.2)" />
+      <Grain opacity={0.098} blendMode="screen" filter="brightness(1.2)" />
       
       {/* Navigation */}
       <Navigation />
