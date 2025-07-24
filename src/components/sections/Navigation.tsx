@@ -59,12 +59,15 @@ export const Navigation: React.FC = () => {
           className="hidden md:flex items-center"
           variants={staggerItem}
         >
-          <span 
+          <a 
+            href="https://app.trackflow.live/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 border-t border-b border-l text-sm text-gray-600 cursor-pointer hover:bg-hover-bg hover:text-gray-800 transition-colors flex items-center h-[44px]"
             style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
           >
             Log In
-          </span>
+          </a>
           <motion.div whileHover={buttonHover}>
             <Button 
               onClick={openForm}
@@ -145,9 +148,15 @@ export const Navigation: React.FC = () => {
                 style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
                 variants={staggerItem}
               >
-                <div className="px-4 py-2 border rounded text-sm text-gray-600 hover:bg-hover-bg hover:text-gray-800 transition-colors cursor-pointer" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
+                <a 
+                  href="https://app.trackflow.live/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 border rounded text-sm text-gray-600 hover:bg-hover-bg hover:text-gray-800 transition-colors cursor-pointer" 
+                  style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
+                >
                   Log In
-                </div>
+                </a>
                 <motion.div whileHover={buttonHover}>
                   <Button 
                     onClick={openForm}
