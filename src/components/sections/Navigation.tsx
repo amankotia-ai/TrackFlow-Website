@@ -116,7 +116,7 @@ export const Navigation: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            className="md:hidden border-b border-l border-r bg-white" 
+            className="md:hidden border-b border-l border-r bg-white max-w-[72rem] mx-auto" 
             style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -124,7 +124,7 @@ export const Navigation: React.FC = () => {
             transition={{ duration: 0.3 }}
           >
             <motion.div 
-              className="max-w-[72rem] mx-auto px-4 py-4 space-y-4"
+              className="px-4 py-4 space-y-4"
               variants={staggerContainer}
               initial="hidden"
               animate="visible"

@@ -29,15 +29,15 @@ export const SessionsAPI: React.FC = () => {
 
   return (
     <motion.div 
-      className="max-w-[72rem] mx-auto pl-4 md:pl-8 border-t border-l border-r border-b" 
+      className="max-w-[72rem] mx-auto border-t border-l border-r border-b" 
       style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={staggerContainer}
     >
-      <div className="flex flex-col lg:flex-row items-start space-y-8 lg:space-y-0">
-        <div className="flex-1 max-w-lg text-center lg:text-left pt-8 pb-12 md:pt-8 md:pb-16 pr-8 lg:pr-16">
+      <div className="flex flex-col lg:flex-row items-start">
+        <div className="flex-1 lg:max-w-lg text-center lg:text-left pt-8 pb-8 lg:pb-16 px-6 md:px-8 lg:pr-16 border-b lg:border-b-0 lg:border-r" style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}>
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
             variants={staggerItem}
@@ -45,28 +45,23 @@ export const SessionsAPI: React.FC = () => {
             When This Happens → Do That
           </motion.h2>
           <motion.p 
-            className="text-sm mb-8 text-gray-600 max-w-sm"
+            className="text-sm mb-0 text-gray-600 max-w-sm mx-auto lg:mx-0"
             variants={staggerItem}
           >
             TrackFlow's powerful workflow system combines triggers and operations to create intelligent, behavior-driven web experiences. Simply drag, drop, connect, and deploy.
           </motion.p>
         </div>
         
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 w-full">
           {features.map((feature, index) => {
             const isFirstColumn = index % 2 === 0;
-            const isLastColumn = index % 2 === 1;
             const isLastRow = index >= features.length - 2;
             
             return (
               <motion.div 
                 key={index}
-                className={`p-6 ${
-                  isFirstColumn ? 'border-l' : ''
-                } ${
-                  isLastColumn ? '' : 'border-r'
-                } ${
-                  isLastRow ? '' : 'border-b'
+                className={`p-6 border-b last:border-b-0 md:border-r md:even:border-r-0 ${
+                  isLastRow ? 'md:border-b-0' : ''
                 }`}
                 style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
                 variants={staggerItem}

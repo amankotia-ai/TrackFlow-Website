@@ -9,7 +9,7 @@ interface NodeItemProps {
 
 const NodeItem: React.FC<NodeItemProps> = ({ title, description }) => (
   <motion.div 
-    className="border-r border-b p-6 md:p-8 flex flex-col min-h-[180px] last:border-r-0 md:odd:border-r lg:nth-child-3n:border-r-0" 
+    className="border-b p-5 md:p-8 flex flex-col md:min-h-[180px] md:border-r md:last:border-r-0 md:odd:border-r lg:nth-child-3n:border-r-0" 
     style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
     variants={staggerItem}
   >
@@ -20,7 +20,7 @@ const NodeItem: React.FC<NodeItemProps> = ({ title, description }) => (
       {title}
     </motion.h4>
     <motion.p 
-      className="text-xs md:text-sm text-gray-600 leading-relaxed"
+      className="text-xs md:text-sm text-gray-600 leading-snug md:leading-relaxed"
       variants={fadeIn}
     >
       {description}
@@ -128,37 +128,39 @@ export const TriggersOperations: React.FC = () => {
     <>
       {/* Trigger Nodes Section */}
       <motion.div 
-        className="max-w-[72rem] mx-auto px-4 md:px-8 py-12 md:py-16 border-t border-l border-r" 
+        className="max-w-[72rem] mx-auto border-t border-l border-r" 
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         ref={triggerRef}
         initial="hidden"
         animate={isTriggerInView ? "visible" : "hidden"}
         variants={staggerContainer}
       >
+        <div className="px-5 md:px-8 py-8 md:py-16">
+          <motion.div 
+            className="text-sm font-medium mb-4 md:mb-6 text-gray-600"
+            variants={slideUp}
+          >
+            Know Your Visitors
+          </motion.div>
+          
+          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-3 md:mb-4"
+            variants={slideUp}
+          >
+            <span style={{ color: '#F73029' }}>Trigger Nodes:</span> Detect Visitor Behavior
+          </motion.h2>
+          
+          <motion.p 
+            className="text-sm leading-snug md:leading-normal mb-6 md:mb-12 text-gray-600 max-w-4xl"
+            variants={slideUp}
+          >
+            TrackFlow monitors 15+ visitor signals in real-time to trigger personalization at the perfect moment. 
+            Detect behavior, traffic sources, device types, and context to create intelligent experiences.
+          </motion.p>
+        </div>
+        
         <motion.div 
-          className="text-sm font-medium mb-6 text-gray-600"
-          variants={slideUp}
-        >
-          Know Your Visitors
-        </motion.div>
-        
-        <motion.h2 
-          className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
-          variants={slideUp}
-        >
-          <span style={{ color: '#F73029' }}>Trigger Nodes:</span> Detect Visitor Behavior
-        </motion.h2>
-        
-        <motion.p 
-          className="text-sm mb-8 md:mb-12 text-gray-600 max-w-4xl"
-          variants={slideUp}
-        >
-          TrackFlow monitors 15+ visitor signals in real-time to trigger personalization at the perfect moment. 
-          Detect behavior, traffic sources, device types, and context to create intelligent experiences.
-        </motion.p>
-        
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t -mx-4 md:-mx-8" 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t" 
           style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
           variants={staggerContainer}
         >
@@ -180,37 +182,39 @@ export const TriggersOperations: React.FC = () => {
 
       {/* Operation Nodes Section */}
       <motion.div 
-        className="max-w-[72rem] mx-auto px-4 md:px-8 py-12 md:py-16 border-l border-r" 
+        className="max-w-[72rem] mx-auto border-l border-r" 
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         ref={operationRef}
         initial="hidden"
         animate={isOperationInView ? "visible" : "hidden"}
         variants={staggerContainer}
       >
+        <div className="px-5 md:px-8 py-8 md:py-16">
+          <motion.div 
+            className="text-sm font-medium mb-4 md:mb-6 text-gray-600"
+            variants={slideUp}
+          >
+            Transform Your Website
+          </motion.div>
+          
+          <motion.h2 
+            className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-3 md:mb-4"
+            variants={slideUp}
+          >
+            <span style={{ color: '#F73029' }}>Operation Nodes:</span> Execute Personalization
+          </motion.h2>
+          
+          <motion.p 
+            className="text-sm leading-snug md:leading-normal mb-6 md:mb-12 text-gray-600 max-w-4xl"
+            variants={slideUp}
+          >
+            Once triggered, TrackFlow executes powerful actions to personalize the experience. 
+            Modify content, control navigation, display overlays, and integrate with your marketing stack.
+          </motion.p>
+        </div>
+        
         <motion.div 
-          className="text-sm font-medium mb-6 text-gray-600"
-          variants={slideUp}
-        >
-          Transform Your Website
-        </motion.div>
-        
-        <motion.h2 
-          className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
-          variants={slideUp}
-        >
-          <span style={{ color: '#F73029' }}>Operation Nodes:</span> Execute Personalization
-        </motion.h2>
-        
-        <motion.p 
-          className="text-sm mb-8 md:mb-12 text-gray-600 max-w-4xl"
-          variants={slideUp}
-        >
-          Once triggered, TrackFlow executes powerful actions to personalize the experience. 
-          Modify content, control navigation, display overlays, and integrate with your marketing stack.
-        </motion.p>
-        
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t -mx-4 md:-mx-8" 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t" 
           style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
           variants={staggerContainer}
         >

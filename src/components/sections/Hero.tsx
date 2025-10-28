@@ -47,51 +47,50 @@ export const Hero: React.FC = () => {
       animate="visible"
       variants={staggerContainer}
     >
-      <div className="flex flex-col items-center justify-center px-4 md:px-8 pt-16 md:pt-24">
+      <div className="flex flex-col items-center justify-center px-6 sm:px-6 md:px-8 pt-8 sm:pt-16 md:pt-24 pb-8 sm:pb-12 md:pb-16">
         {/* Content */}
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center w-full">
           <motion.h1 
-            className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight mb-4 text-[#1F2937] w-[60%] tracking-[-0.03em]"
+            className="text-[36px] leading-[1.2] sm:text-4xl sm:leading-tight md:text-5xl lg:text-6xl xl:text-[64px] font-light mb-3 sm:mb-4 text-[#1F2937] w-full sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] tracking-[-0.03em]"
             style={{ 
-              fontFamily: 'ui-sans-serif, system-ui, sans-serif',
-              fontSize: '56px'
+              fontFamily: 'ui-sans-serif, system-ui, sans-serif'
             }}
             variants={staggerItem}
           >
             Make each site visit as personal as <span className="text-[#F73029]">a sales call</span>
           </motion.h1>
           <motion.p 
-            className="text-sm text-gray-600 max-w-2xl mb-16"
+            className="text-[15px] leading-relaxed sm:text-base md:text-base text-gray-600 max-w-2xl mb-6 sm:mb-12 md:mb-16 px-2 sm:px-4"
             variants={staggerItem}
           >
             Serve custom content to each of your website visitors based on their interests.
           </motion.p>
           <motion.div 
-            className="mb-8"
+            className="mb-6 sm:mb-6 md:mb-8"
             variants={buttonAnimation}
             initial="initial"
             animate="animate"
           >
             <Button 
-              className="text-[#F73029] font-medium px-8 py-3 text-base bg-transparent hover:bg-transparent rounded-none flex items-center gap-2" 
+              className="text-[#F73029] font-medium px-5 sm:px-8 py-2 sm:py-3 text-[13px] sm:text-base bg-transparent hover:bg-transparent rounded-none flex items-center gap-2" 
               onClick={handleDemoClick}
             >
               <motion.img 
                 src="/imageaaa 95_layerstyle.svg" 
                 alt="" 
-                className="w-3 h-3"
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3"
                 animate={pulseAnimation}
               />
-              Watch TrackFlow in Action
+              <span className="whitespace-nowrap">Watch TrackFlow in Action</span>
             </Button>
           </motion.div>
           
           {/* Demo Section */}
           <motion.div 
-            className="w-full px-4 md:px-8"
+            className="w-full -mx-6 sm:mx-0 sm:px-2 md:px-4 overflow-visible"
             variants={staggerItem}
           >
-            <div className="max-w-[90%] mx-auto">
+            <div className="w-full max-w-full mx-auto overflow-visible">
               <DemoInteractiveSimple ref={demoRef} />
             </div>
           </motion.div>

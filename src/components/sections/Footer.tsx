@@ -18,15 +18,15 @@ export const Footer: React.FC = () => {
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         variants={staggerContainer}
       >
-        <div className="flex flex-col space-y-8">
+        <div className="flex flex-col items-center md:items-start space-y-8">
           <motion.div 
-            className="text-center md:text-left"
+            className="flex flex-col items-center md:items-start text-center md:text-left"
             variants={slideLeft}
           >
             <motion.img 
               src="/Vesasctor.svg" 
               alt="Steel Logo" 
-              className="h-8 mb-4 mx-auto md:mx-0"
+              className="h-8 mb-4"
               variants={scaleIn}
             />
             <motion.p 
@@ -36,13 +36,13 @@ export const Footer: React.FC = () => {
               Stand out from the crowd with next-generation marketing.
             </motion.p>
             <motion.p 
-              className="text-xs text-gray-500"
+              className="text-xs text-gray-500 mb-2"
               variants={slideUp}
             >
               © Poliform Technologies LLP, 2025
             </motion.p>
             <motion.div 
-              className="flex items-center justify-center md:justify-start space-x-4 mt-2 text-xs"
+              className="flex items-center justify-center md:justify-start space-x-4 text-xs"
               variants={staggerContainer}
             >
               <motion.span 
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
               </motion.span>
             </motion.div>
             <motion.div 
-              className="flex items-center justify-center md:justify-start space-x-2 mt-4"
+              className="flex items-center space-x-2 mt-4"
               variants={slideUp}
             >
               <motion.div 
