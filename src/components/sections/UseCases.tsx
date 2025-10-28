@@ -92,23 +92,23 @@ export const UseCases: React.FC = () => {
 
   const useCases = [
     { 
-      title: "Track visitor journeys", 
-      description: "Complete UTM parameter tracking and multi-visit intelligence",
+      title: "Behavioral Targeting", 
+      description: "Trigger actions based on scroll depth, time on page, repeat visits, user journeys, and exit intent",
       icon: "/image 114_layerstyle.svg" 
     },
     { 
-      title: "Tailor existing copy", 
-      description: "CSS selector-based content replacement and personalization",
+      title: "Content Personalization", 
+      description: "Replace text, modify CSS, hide/show elements, and display custom overlays for any visitor segment",
       icon: "/image 115_layerstyle.svg" 
     },
     { 
-      title: "Per-visit personalization", 
-      description: "Dynamic experiences that evolve with each visit",
+      title: "Campaign Intelligence", 
+      description: "Adapt messaging based on UTM parameters, traffic source, device type, and geographic location",
       icon: "/image 116_layerstyle.svg" 
     },
     { 
-      title: "Fine-tune personalization", 
-      description: "Flexible rule engine with precise targeting controls",
+      title: "Conversion Optimization", 
+      description: "Reduce cart abandonment, improve lead quality, and increase conversions by 15-40%",
       icon: "/image 117_layerstyle.svg" 
     }
   ];

@@ -20,8 +20,8 @@ export const ResearchGrants: React.FC = () => {
       viewport={{ once: true, amount: 0.4 }}
       variants={smoothStaggerContainer}
     >
-      {/* Marketing Section - Hidden for now */}
-      {/* <motion.div 
+      {/* Marketing Section */}
+      <motion.div 
         className="px-4 md:px-8 py-12 md:py-16"
         ref={marketingRef}
         initial="hidden"
@@ -46,26 +46,26 @@ export const ResearchGrants: React.FC = () => {
             variants={gentleFadeInRight}
           >
             <motion.div className="mb-4" variants={smoothFadeUp}>
-              <div className="text-sm font-medium mb-6 text-gray-600">For Marketing</div>
+              <div className="text-sm font-medium mb-6 text-gray-600">For Marketing Teams</div>
             </motion.div>
             <motion.h2 
               className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
               variants={smoothFadeUp}
             >
-              More personalization, less work
+              No-code personalization at scale
             </motion.h2>
             <motion.p 
               className="text-sm mb-6 text-gray-600"
               variants={smoothFadeUp}
             >
-              Go beyond inserting a logo or a custom title. The TrackFlow AI tells each visitor exactly how you can meet their needs.
+              Create personalized campaigns without IT dependency. Test messaging variations instantly, optimize conversion funnels with data, and scale personalization across all channels—no developers needed.
             </motion.p>
           </motion.div>
         </div>
       </motion.div>
 
       {/* Full-width divider */}
-      {/* <motion.div 
+      <motion.div 
         className="w-full border-b" 
         style={{ borderColor: 'rgba(247, 48, 41, 0.1)' }}
         initial={{ scaleX: 0 }}
@@ -76,10 +76,10 @@ export const ResearchGrants: React.FC = () => {
           damping: 20,
           delay: 0.3
         }}
-      /> */}
+      />
 
-      {/* Sales Section - Hidden for now */}
-      {/* <motion.div 
+      {/* Sales Section */}
+      <motion.div 
         className="px-4 md:px-8 py-12 md:py-16"
         ref={salesRef}
         initial="hidden"
@@ -92,19 +92,19 @@ export const ResearchGrants: React.FC = () => {
             variants={gentleFadeInLeft}
           >
             <motion.div className="mb-4" variants={smoothFadeUp}>
-              <div className="text-sm font-medium mb-6 text-gray-600">For Sales</div>
+              <div className="text-sm font-medium mb-6 text-gray-600">For Growth Teams</div>
             </motion.div>
             <motion.h2 
               className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
               variants={smoothFadeUp}
             >
-              Turn page views into pipeline
+              Turn visitors into qualified leads
             </motion.h2>
             <motion.p 
               className="text-sm mb-6 text-gray-600"
               variants={smoothFadeUp}
             >
-              Whenever an account hits your website, TrackFlow can deliver an AI-generated message, case study, or video. Move your leads down the funnel each time they hit your site.
+              Implement rapid experimentation with data-driven optimization. Use behavioral targeting automation to identify high-intent prospects, qualify leads intelligently, and optimize conversion rates by 15-40%.
             </motion.p>
           </motion.div>
           
@@ -120,7 +120,7 @@ export const ResearchGrants: React.FC = () => {
             />
           </motion.div>
         </div>
-      </motion.div> */}
+      </motion.div>
     </motion.div>
   );
 }; 

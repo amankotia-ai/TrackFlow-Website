@@ -6,23 +6,23 @@ import { slideUp, fadeIn, staggerContainer, staggerItem } from '@/lib/animations
 export const SessionsAPI: React.FC = () => {
   const features = [
     {
-      title: "Increase pipeline",
-      description: "Show different content based on visitor source",
+      title: "15+ Behavioral Triggers",
+      description: "Detect page visits, scroll depth, time on page, user journeys, exit intent, and device type in real-time",
       icon: "/image 118_layerstyle.svg"
     },
     {
-      title: "Speak to your visitors directly",
-      description: "Adapt messaging based on visitor behavior",
+      title: "Traffic Source Intelligence",
+      description: "Personalize based on UTM parameters, geolocation, referral source, and session status",
       icon: "/image 111_layerstyle.svg"
     },
     {
-      title: "Understand your visitors",
-      description: "Track journeys and optimize conversions",
+      title: "Powerful Operations",
+      description: "Replace text, modify CSS, hide/show elements, display overlays, and redirect users dynamically",
       icon: "/image 112_layerstyle.svg"
     },
     {
-      title: "Automatic landing page creation",
-      description: "Dynamic content based on visitor behavior",
+      title: "Advanced Integrations",
+      description: "Fire custom events, trigger analytics, execute JavaScript, and connect with CRM systems",
       icon: "/image 113_layerstyle.svg"
     }
   ];
@@ -42,13 +42,13 @@ export const SessionsAPI: React.FC = () => {
             className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
             variants={staggerItem}
           >
-            Outbound is personal. Inbound should be too.
+            When This Happens → Do That
           </motion.h2>
           <motion.p 
             className="text-sm mb-8 text-gray-600 max-w-sm"
             variants={staggerItem}
           >
-            Transform anonymous visitors into qualified leads with personalized experiences.
+            TrackFlow's powerful workflow system combines triggers and operations to create intelligent, behavior-driven web experiences. Simply drag, drop, connect, and deploy.
           </motion.p>
         </div>
         

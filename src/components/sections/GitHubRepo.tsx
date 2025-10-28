@@ -33,13 +33,13 @@ export const GitHubRepo: React.FC = () => {
           className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
           variants={staggerItem}
         >
-          Drop a script into any website
+          Works with any website platform
         </motion.h2>
         <motion.p 
           className="text-sm mb-6 md:mb-8 text-gray-600 max-w-2xl mx-auto"
           variants={staggerItem}
         >
-          Simply drop a pixel into your site header. TrackFlow integrates with every CMS and website builder.
+          One line of code. Universal compatibility with Webflow, WordPress, Shopify, Squarespace, React, Vue, Angular, and any custom website. Connects seamlessly with Google Analytics, Tag Manager, and your CRM.
         </motion.p>
         <motion.div 
           variants={staggerItem}

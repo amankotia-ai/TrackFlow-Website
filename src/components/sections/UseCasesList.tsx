@@ -56,15 +56,6 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({ title, description, icon, ite
 );
 
 // Icon components
-const OfficeIcon: React.FC = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
-    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <rect x="7" y="7" width="3" height="3" fill="currentColor"/>
-    <rect x="14" y="7" width="3" height="3" fill="currentColor"/>
-    <rect x="7" y="14" width="10" height="3" fill="currentColor"/>
-  </svg>
-);
-
 const ShoppingIcon: React.FC = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
     <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L5 3H3m4 10v6a2 2 0 002 2h10a2 2 0 002-2v-6" stroke="currentColor" strokeWidth="2" fill="none"/>
@@ -79,10 +70,19 @@ const CodeIcon: React.FC = () => (
   </svg>
 );
 
-const TrendingUpIcon: React.FC = () => (
+const OfficeIcon: React.FC = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
-    <polyline points="23,6 13.5,15.5 8.5,10.5 1,18" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <polyline points="17,6 23,6 23,12" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <rect x="7" y="7" width="3" height="3" fill="currentColor"/>
+    <rect x="14" y="7" width="3" height="3" fill="currentColor"/>
+    <rect x="7" y="14" width="10" height="3" fill="currentColor"/>
+  </svg>
+);
+
+const NewspaperIcon: React.FC = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-current">
+    <path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H4a2 2 0 00-2 2v16a2 2 0 002 2z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <path d="M7 7h10M7 11h10M7 15h5" stroke="currentColor" strokeWidth="2" fill="none"/>
   </svg>
 );
 
@@ -92,47 +92,47 @@ export const UseCasesList: React.FC = () => {
 
   const useCases = [
     {
-      title: "Track Visitor Journeys",
-      description: "Complete UTM parameter tracking and multi-visit intelligence",
-      icon: <TrendingUpIcon />,
-      items: [
-        "First-touch and last-touch UTM attribution",
-        "Visit count and session-based personalization",
-        "Time-on-page triggered content changes",
-        "Cross-session visitor recognition"
-      ]
-    },
-    {
-      title: "Tailor Existing Copy",
-      description: "CSS selector-based content replacement system",
-      icon: <CodeIcon />,
-      items: [
-        "Replace any text, button, or link content",
-        "UTM parameter condition matching",
-        "Rule priority and conflict resolution",
-        "Real-time content personalization"
-      ]
-    },
-    {
-      title: "Per-Visit Personalization",
-      description: "Dynamic experiences that evolve with each visit",
+      title: "E-Commerce & Retail",
+      description: "Reduce cart abandonment and boost mobile conversions",
       icon: <ShoppingIcon />,
       items: [
-        "Show/hide elements based on visit count",
-        "Time-based content reveals",
-        "Returning visitor exclusive content",
-        "CSS class manipulation for styling changes"
+        "Cart Abandonment Recovery: Display 15% off + free shipping popup on exit intent (30-50% reduction)",
+        "Mobile Shopping Optimization: Replace 'Click' with 'Tap', increase button sizes, show mobile checkout",
+        "Geographic Pricing: Auto-convert currency and show local shipping for international visitors",
+        "Product Recommendations: Show personalized products based on browsing and purchase history"
       ]
     },
     {
-      title: "Fine-Tune Personalization",
-      description: "Flexible rule engine with precise targeting",
+      title: "SaaS & Technology",
+      description: "Improve trial conversions and feature adoption",
+      icon: <CodeIcon />,
+      items: [
+        "Trial Extension for Engaged Users: Offer 14 extra days to users spending 5+ minutes across key pages",
+        "Feature Discovery: Show advanced features panel to power users with 10+ visits in 7 days",
+        "Exit-Intent Demo Scheduling: Display personalized demo booking form before users leave pricing page",
+        "User Onboarding: Guide new users through key features with contextual overlays and tooltips"
+      ]
+    },
+    {
+      title: "B2B Services",
+      description: "Qualify leads and personalize for enterprise buyers",
       icon: <OfficeIcon />,
       items: [
-        "Target elements using CSS selectors",
-        "Combine multiple conditions (UTM + visit count + time)",
-        "Hide, show, add/remove classes actions",
-        "Rule execution tracking and analytics"
+        "Account-Based Marketing: Show enterprise messaging and case studies to business IP addresses",
+        "Lead Qualification Workflow: Add company size and industry fields for engaged visitors (70% better SQLs)",
+        "Geographic Content Localization: Auto-translate headlines and show regional compliance badges",
+        "Industry-Specific Messaging: Display relevant testimonials and solutions based on visitor segment"
+      ]
+    },
+    {
+      title: "Media & Publishing",
+      description: "Grow subscriptions and boost reader engagement",
+      icon: <NewspaperIcon />,
+      items: [
+        "Newsletter Signup Optimization: Show slide-in banner at 75% scroll (80% increase in signups)",
+        "Ad Blocker Detection: Display subscription offers and hide broken ad spaces for ad-block users",
+        "Returning Reader Recognition: Welcome back visitors with personalized reading history and recommendations",
+        "Content Engagement: Display related articles and premium content previews to highly engaged readers"
       ]
     }
   ];
@@ -150,22 +150,22 @@ export const UseCasesList: React.FC = () => {
         className="text-sm font-medium mb-6 text-gray-600"
         variants={slideUp}
       >
-        Proven strategies
+        Real-World Examples
       </motion.div>
       
       <motion.h2 
         className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
         variants={slideUp}
       >
-        Personalization across industries
+        <span style={{ color: '#F73029' }}>Industry Use Cases:</span> Proven Results
       </motion.h2>
       
       <motion.p 
         className="text-sm mb-8 md:mb-12 text-gray-600 max-w-4xl"
         variants={slideUp}
       >
-        TrackFlow powers personalized experiences across diverse industries and business models. 
-        Each use case represents proven strategies that drive engagement, conversions, and revenue growth.
+        See how companies across industries combine triggers and operations to create powerful personalization workflows. 
+        Each use case shows real strategies that drive measurable improvements in conversions, engagement, and revenue.
       </motion.p>
       
       <motion.div 

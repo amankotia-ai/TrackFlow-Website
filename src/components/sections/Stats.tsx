@@ -32,9 +32,9 @@ export const Stats: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   const stats = [
-    { value: "80B+", label: "Tokens Scraped" },
-    { value: "200,000+", label: "Browser Hours Served" },
-    { value: "<1s", label: "Avg. Session Start Time" }
+    { value: "15-40%", label: "Average Conversion Increase" },
+    { value: "15+", label: "Behavioral Trigger Types" },
+    { value: "<100ms", label: "Trigger Response Time" }
   ];
 
   return (

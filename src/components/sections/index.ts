@@ -7,6 +7,7 @@ export { GitHubRepo } from './GitHubRepo';
 export { ResearchGrants } from './ResearchGrants';
 export { ReadyToBuild } from './ReadyToBuild';
 export { Footer } from './Footer';
+export { TriggersOperations } from './TriggersOperations';
 export { ExamplesHero } from './ExamplesHero';
 export { ExamplesList } from './ExamplesList';
 export { UseCasesHero } from './UseCasesHero';

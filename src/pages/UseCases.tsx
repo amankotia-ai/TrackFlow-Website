@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Navigation,
-  Footer
+  Footer,
+  TriggersOperations
 } from '@/components/sections';
 import { UseCasesHero } from '@/components/sections/UseCasesHero';
 import { UseCasesList } from '@/components/sections/UseCasesList';
@@ -13,6 +14,7 @@ const UseCases = () => {
       <Navigation />
       <UseCasesHero />
       <div className="mt-[60px]">
+        <TriggersOperations />
         <UseCasesList />
       </div>
       <Footer />
