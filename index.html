@@ -17,6 +17,23 @@
     <meta name="twitter:title" content="TrackFlow" />
     <meta name="twitter:description" content="Make each site visit as personal as a sales call" />
     <meta name="twitter:image" content="/image 95_layerstyle.svg" />
+
+    <!-- Unified Workflow System with Anti-Flicker - Add to <head> section -->
+    <script>
+      // Configure anti-flicker settings
+      window.unifiedWorkflowConfig = {
+        maxHideTime: 5000,
+        showLoadingIndicator: true,
+        debug: true,
+        hideMethod: 'opacity'
+      };
+    </script>
+    <!-- Anti-flicker script (loads first to prevent FOOC) -->
+    <script src="https://trackflow-app-production.up.railway.app/api/anti-flicker.js"></script>
+    <!-- Main workflow system -->
+    <script src="https://trackflow-app-production.up.railway.app/api/unified-workflow-system.js"></script>
+    <!-- API key (replace YOUR_API_KEY) -->
+    <script>window.workflowSystem = new UnifiedWorkflowSystem({apiKey: 'wf_1a1e7aa820b99ee517c48cb9b05b9e4773e1a26e90d2dcef2761769fd22692ae'});</script>
   </head>
 
   <body>
