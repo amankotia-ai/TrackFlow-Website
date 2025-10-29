@@ -39,7 +39,7 @@ export const GitHubRepo: React.FC = () => {
           className="text-sm mb-6 md:mb-8 text-gray-600 max-w-2xl mx-auto"
           variants={staggerItem}
         >
-          One line of code. Universal compatibility with Webflow, WordPress, Shopify, Squarespace, React, Vue, Angular, and any custom website. Connects seamlessly with Google Analytics, Tag Manager, and your CRM.
+          Universal compatibility with Webflow, WordPress, Shopify, Squarespace, React, Vue, Angular, and any custom website.
         </motion.p>
         <motion.div 
           variants={staggerItem}

@@ -42,7 +42,7 @@ export const SessionsAPI: React.FC = () => {
             className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-4"
             variants={staggerItem}
           >
-            When This Happens → Do That
+            Outbound is personal. Inbound should be too.
           </motion.h2>
           <motion.p 
             className="text-sm mb-0 text-gray-600 max-w-sm mx-auto lg:mx-0"

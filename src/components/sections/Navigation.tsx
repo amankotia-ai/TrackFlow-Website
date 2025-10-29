@@ -12,8 +12,8 @@ export const Navigation: React.FC = () => {
 
   const navItems = [
     { name: 'Use Cases', href: '/use-cases' },
-    { name: 'Demo', href: '/demo' },
-    { name: 'Blog', href: '/blog' }
+    { name: 'Demo', href: '/demo' }
+    // { name: 'Blog', href: '/blog' }
   ];
 
   return (

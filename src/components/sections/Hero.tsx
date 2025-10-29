@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
             className="text-[15px] leading-relaxed sm:text-base md:text-base text-gray-600 max-w-2xl mb-6 sm:mb-12 md:mb-16 px-2 sm:px-4"
             variants={staggerItem}
           >
-            Serve custom content to each of your website visitors based on their interests.
+            Deliver the right message to the right visitor, at exactly the right moment.
           </motion.p>
           <motion.div 
             className="mb-6 sm:mb-6 md:mb-8"
