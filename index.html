@@ -34,6 +34,19 @@
     <script src="https://trackflow-app-production.up.railway.app/api/unified-workflow-system.js"></script>
     <!-- API key (replace YOUR_API_KEY) -->
     <script>window.workflowSystem = new UnifiedWorkflowSystem({apiKey: 'wf_1a1e7aa820b99ee517c48cb9b05b9e4773e1a26e90d2dcef2761769fd22692ae'});</script>
+
+    <!-- Journey Tracker -->
+    <script src="https://cdn.jsdelivr.net/gh/amankotia-ai/TrackFlow-App@main/public/journey-tracker.js"></script>
+    <script>
+      const journeyTracker = new CookieFreeJourneyTracker({
+        apiEndpoint: 'https://trackflow-app-production.up.railway.app/api/journey',
+        enableTracking: true,
+        debug: true, // Set false in production
+        sendInterval: 30000
+      });
+      
+      journeyTracker.initialize();
+    </script>
   </head>
 
   <body>
