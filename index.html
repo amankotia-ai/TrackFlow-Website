@@ -30,6 +30,8 @@
   // Set API endpoint for visitor tracking
   window.TRACKFLOW_API_ENDPOINT = 'https://trackflow-app-production.up.railway.app/api';
 </script>
+    <!-- TrackFlow Core - Unified identity & deduplication (MUST LOAD FIRST) -->
+<script src="https://trackflow-app-production.up.railway.app/trackflow-core.js"></script>
 <!-- Anti-flicker script (loads first to prevent FOOC) -->
 <script src="https://trackflow-app-production.up.railway.app/api/anti-flicker.js"></script>
 <!-- Journey tracker for visitor analytics -->
